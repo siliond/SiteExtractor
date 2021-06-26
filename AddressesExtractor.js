@@ -1,10 +1,10 @@
-var jq = document.createElement('script');
-jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js";
-jq.onload = function() {
-    getAddresses();
-}
+// var jq = document.createElement('script');
+// jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js";
+// jq.onload = function() {
+//     getAddresses();
+// }
 
-document.getElementsByTagName('head')[0].appendChild(jq);
+// document.getElementsByTagName('head')[0].appendChild(jq);
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(function() {
