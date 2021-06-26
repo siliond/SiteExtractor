@@ -161,20 +161,25 @@ function getAddresses() {
                 (!excludePrevious || !previousAddresses.find(a => a.indexOf(address.split(' ').slice(0, 2).join(' ')) >= 0)))
                 addresses.push(address);
         });
-        const currentDate = new Date();
 
-        let csvContents =
-            '"Addresses"\n"' +
-            addresses.join('"\n"') +
-            '"';
+        if (addresses.length > 0) {
+            const currentDate = new Date();
 
-        let addressesText =
-            `   //${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
+            let csvContents =
+                '"Addresses"\n"' +
+                addresses.join('"\n"') +
+                '"';
+
+            let addressesText =
+                `   //${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
                 "${addresses.join('", "')}",
                 
                 ${csvContents}`;
 
-        copyToClipboard(addressesText);
+            copyToClipboard(addressesText);
+        } else {
+            console.log("No New addressed found.");
+        }
     });
 
     //TODO save as csv file
