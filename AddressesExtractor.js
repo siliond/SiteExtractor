@@ -35,6 +35,9 @@ function getAddresses() {
     };
 
     const previousAddresses = [
+        //portal.onehome.com_2021-06-26
+        "1804 Kendall Court, Keller, TX 76248-7322", "1009 Palmer Lane, DeSoto, TX 75115",
+
         // www.redfin.com_2021-06-26
         "3007 Eagle Ln, Melissa, TX 75454", "3107 Columbia Dr, Melissa, TX 75454", "8705 Lakeport Dr, Rowlett, TX 75089", "3312 Fannin Rd, Melissa, TX 75454", "1101 Dodd Dr, Wylie, TX 75098", "3609 Quail View Dr, Mc, Kinney, TX 75071", "9739 County Road 744, Princeton, TX 75407", "8702 Lakeside Dr, Rowlett, TX 75088", "880 Overland Dr, Lowry Crossing, TX 75069", "417 Ashland Dr, Wylie, TX 75098", "1229 Waters Edge, Rockwall, TX 75087", "7812 Bow Ct, Frisco, TX 75035", "8717 Autumn Lake Trl, Mc, Kinney, TX 75071", "9199 Kiwi Cir, Princeton, TX 75407", "116 S Bending Oak Ln, Wylie, TX 75098", "11585 County Road 738, Princeton, TX 75407", "130 Hunters Glen Dr, Wylie, TX 75098", "6632 Pinebluff Dr, Plano, TX 75074", "2406 Sweetgum Ct, Dallas, TX 75098", "6913 Marigold Ct, Plano, TX 75074", "3313 Cedar Creek Ln, Sachse, TX 75048", "2001 Knights Ct, Allen, TX 75013", "522 Vista View Dr, Murphy, TX 75094", "225 E Hazelwood St, Princeton, TX 75407", "7210 Lynn Dr, Rowlett, TX 75088", "3102 W Fannin Rd, Melissa, TX 75454", "Wilson Way, Princeton, TX 75407", "1627 Eastwood Rd, Melissa, TX 75454",
         "1229 Waters Edge, Rockwall, TX 75087", "8717 Autumn Lake Trl, Mc, Kinney, TX 75071", "509 Camrose Ln, Murphy, TX 75094",
