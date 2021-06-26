@@ -35,6 +35,13 @@ function getAddresses() {
     };
 
     const previousAddresses = [
+        //www.trulia.com_2021-06-26
+        "1001 Finsbury Ln, Forney, TX", "1012 Brigham Dr, Forney, TX", "10474 Country View Ln, Forney, TX", "1028 Hoxton Ln, Forney, TX", "160 Concan Dr, Forney, TX", "Lot 9 A Ceder Elm Ln, Nevada, TX", "459 Chippendale Dr, Rockwall, TX", "2511 Hidden Valley Trl, Sherman, TX", "291 Bronco TrlLittle Elm, TX", "3112 San Saba Ct, Rockwall, TX", "609 FM 2194Farmersville, TX", "610 Scenic Dr, Heath, TX",
+        "502 Shelby Trl, Bells, TX", "700 Paradise CvShady Shores, TX", "4809 Lindsey Dr, Rowlett, TX", "2099 Vinson Rd, Wylie, TX", "219 Navajo Trl, Gainesville, TX", "2707 Naomi Ct, Farmersville, TX", "2621 Johnson Ct, Heath, TX", "11 Sunset Trl, Heath, TX", "705 Crestbrook DrFlower Mound, TX", "150 Jordan Creek Rd, Collinsville, TX", "1020 Devonshire Dr NForney, TX",
+        "483 Terry Ln, Heath, TX", "104 Bent Oak Dr, Aubrey, TX", "800 Camelot Ct, Lewisville, TX", "33 Galvan LnVan Alstyne, TX", "1109 Devonshire Dr SForney, TX", "1350 Riverside Oaks Dr, Rockwall, TX", "15310 S FM 372Valley View, TX", "2808 Neely TrlValley View, TX",
+        "1012 Native Trl, Heath, TX", "400 Willowsprings Dr, Rockwall, TX", "145 County Road 2254Valley View, TX", "2340 W Washington St, Sherman, TX", "913 Majestic Ct, Heath, TX", "853 Potomac Dr, Rockwall, TX", "5315 Standing Oak Ln, Rockwall, TX", "4622 Magnolia Park Dr, Arlington, TX", "768 Windsong Ln, Rockwall, TX",
+        "5850 Naples DrFlower Mound, TX",
+
         //www.redfin.com_2021-06-26
         "4465 Bailey Ct, Plano, TX 75093", "8509 Autumn Lake Trl, Mc, Kinney, TX 75071", "4104 Opus Ct, Flower Mound, TX 75022", "7301 Clear Rapids Dr, Mc, Kinney, TX 75071", "1207 Whitestone Dr, Murphy, TX 75094", "646 Joshua Ln, Coppell, TX 75019", "4225 Chippewa Ct, Carrollton, TX 75010", "1812 N Waddill St, Mc, Kinney, TX 75069",
 
