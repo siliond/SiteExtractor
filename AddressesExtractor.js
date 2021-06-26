@@ -6,8 +6,23 @@ jq.onload = function() {
 
 document.getElementsByTagName('head')[0].appendChild(jq);
 
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        console.log('Async: Copying to clipboard was successful!');
+    }, function(err) {
+        console.error('Async: Could not copy text: ', err);
+    });
+}
+
 function getAddresses() {
     const siteSettings = {
+        //https://www.redfin.com/city/30868/TX/Plano/filter/property-type=house,max-price=650k,min-beds=3,min-baths=2,min-year-built=1990,min-lot-size=0.25-acre,include=forsale+mlsfsbo+construction+fsbo+foreclosed,viewport=33.47482:32.6288:-95.97419:-97.62625
+        "www.redfin.com": { "Path": "div.link-and-anchor", "ExcludePrevious": true },
+
+        //https://www.trulia.com/for_sale/32.8198,33.30782,-96.91955,-96.54632_xy/3p_beds/2p_baths/0-650000_price/2500p_sqft/price;a_sort/0.25p_ls/2000p_built/accepting_offers,coming_soon,foreclosure,fsbo,new_homes,resale_lt/
+        "www.trulia.com": { "Path": "a[data-testid='property-card-link']", "ExcludePrevious": true },
+
+        //https://www.realtor.com/realestateandhomes-search/Plano_TX/beds-3/baths-2/type-single-family-home/price-na-650000/sqft-2500/lot-sqft-10890/age-25/pnd-hide?view=map&pos=33.549135,-97.395747,32.570845,-96.077388,10&points=xlelQa_vjEfaK%3FfaKpjBfsDkMhvIo_AdwB%3FpuEzmAnr%40hx%40flAr%60EflA%60uAflAnnCbP%3FztAxqBxtA%7C%7CC%7CwF~vGbPpeH%60bD~%7BJvXtcB%7CwF~b%40ngJ%60rBzwFrTflA%7CfA%7Ci%40%7CfA%3Fx_Am%7DAvoEsqGniGeeIx_AcwBfnAkhCx%5B%7BpCt%7CAgaKfj%40e~Ez_A%7DaOtx%40u_Nz%5BquE~b%40aiGfFy%7BDoq%40ewB%7DgCmdEaxGwXgrB%3F_gJia%40k%7DC%3FavC%60%7B%40ucB%3FciGor%40wnC%3FscBja%40_nA%3Fox%40or%40yuCrjDemJja%40yqB%7BtAoyQvXyb%40l%7DAiMePbF
         "www.realtor.com": { "Path": "div.srp-page-address", "ExcludePrevious": true },
 
         //https://cannonteamhomes.com/search?view=gallery_view#?q_limit=36&mlsId=17&price=350000:650000&bedrooms=3:&sqFeet=2500:&acreage=0.25:&year=1990:&propertyType=Residential&status=1&polygon=(33.22,-96.504),(33.285,-96.943),(33.273,-97.001),(33.211,-97.042),(33.22,-97.182),(33.158,-97.196),(32.986,-97.067),(32.914,-96.866),(32.905,-96.726),(33.045,-96.482),(33.14,-96.484),(33.234,-96.526)&q_sort=createdAt-&q_offset=0
@@ -20,6 +35,74 @@ function getAddresses() {
     };
 
     const previousAddresses = [
+        // www.redfin.com_2021-06-26
+        "3007 Eagle Ln, Melissa, TX 75454", "3107 Columbia Dr, Melissa, TX 75454", "8705 Lakeport Dr, Rowlett, TX 75089", "3312 Fannin Rd, Melissa, TX 75454", "1101 Dodd Dr, Wylie, TX 75098", "3609 Quail View Dr, Mc, Kinney, TX 75071", "9739 County Road 744, Princeton, TX 75407", "8702 Lakeside Dr, Rowlett, TX 75088", "880 Overland Dr, Lowry Crossing, TX 75069", "417 Ashland Dr, Wylie, TX 75098", "1229 Waters Edge, Rockwall, TX 75087", "7812 Bow Ct, Frisco, TX 75035", "8717 Autumn Lake Trl, Mc, Kinney, TX 75071", "9199 Kiwi Cir, Princeton, TX 75407", "116 S Bending Oak Ln, Wylie, TX 75098", "11585 County Road 738, Princeton, TX 75407", "130 Hunters Glen Dr, Wylie, TX 75098", "6632 Pinebluff Dr, Plano, TX 75074", "2406 Sweetgum Ct, Dallas, TX 75098", "6913 Marigold Ct, Plano, TX 75074", "3313 Cedar Creek Ln, Sachse, TX 75048", "2001 Knights Ct, Allen, TX 75013", "522 Vista View Dr, Murphy, TX 75094", "225 E Hazelwood St, Princeton, TX 75407", "7210 Lynn Dr, Rowlett, TX 75088", "3102 W Fannin Rd, Melissa, TX 75454", "Wilson Way, Princeton, TX 75407", "1627 Eastwood Rd, Melissa, TX 75454",
+        "1229 Waters Edge, Rockwall, TX 75087", "8717 Autumn Lake Trl, Mc, Kinney, TX 75071", "509 Camrose Ln, Murphy, TX 75094",
+
+        // www.redfin.com_2021-06-26
+        "4130 Kate Dr, Frisco, TX 75034", "190 Shennendoah Ln, Rockwall, TX 75087", "7813 Evening Star Dr, Rowlett, TX 75089", "712 Chapel Ct, Allen, TX 75002", "5978 County Road 471, Mc, Kinney, TX 75071", "715 Cross Fence Dr, Lowry Crossing, TX 75069", "7134 Hunt Ln, Rockwall, TX 75087", "6501 Cartier Ct, Mc, Kinney, TX 75072", "11578 County Road 736, Princeton, TX 75407", "509 Angle Ridge Dr, Murphy, TX 75094", "1600 Country Walk Ln, Wylie, TX 75098", "11076 Saguaro St, Frisco, TX 75033", "304 Harvard Dr, Princeton, TX 75407", "2700 Club Ridge Dr #10, Lewisville, TX 75067", "5209 Trail House Way, Mc, Kinney, TX 75071", "414 Overland Trl, Mc, Kinney, TX 75071",
+
+        // portal.onehome.com_2021-06-26
+        "6505 Lantana Drive, Denton, TX 76208-7319", "7008 Royal Oak Estates Drive, Sachse, TX 75048-3427", "2208 Meandering Way, McKinney, TX 75071", "4 Rainforest Circle, Allen, TX 75013-6324", "3310 Shadow Wood CircleHighland Village, TX 75077-1803",
+
+        // portal.onehome.com_2021-06-25
+        "2917 Cascade Drive, Plano, TX 75025-4108", "3113 Oakview Drive, Hurst, TX 76054-2019", "411 Chatham Street, Sunnyvale, TX 75182-4003", "2527 Pinebluff Drive, Dallas, TX 75228-5869", "1812 Kipling DriveFlower Mound, TX 75022-4453", "605 Bellah Drive, Irving, TX 75062-3695", "313 Russwood Street, Rockwall, TX 75087-4207", "2708 Pasadena PlaceFlower Mound, TX 75022-5149", "3427 Lakewood LaneFlower Mound, TX 75022-6806", "1401 Driftwood Drive, Euless, TX 76040-6409", "880 Mellanie Court, Celina, TX 75009-5583", "8809 Hedge Row CourtNorth Richland Hills, TX 76182-8350", "920 W Avenue DGarland, TX 75040-7003", "3509 Fox Glen Drive, Colleyville, TX 76034", "1910 Orchard Grove Drive, Rowlett, TX 75088-1519", "3406 Moss Creek Knoll, Grapevine, TX 76051-6522", "800 Forest Crossing Drive, Hurst, TX 76053-7164", "2714 Winding Hollow Lane, Arlington, TX 76006-4022", "105 Red Bluff CourtHickory Creek, TX 75065-3628", "2003 W Oak Street, Denton, TX 76201-3720", "2427 Pebblebrook CourtGrand Prairie, TX 75050-2720", "1700 Timber Ridge Circle, Corinth, TX 76210-2812", "1714 Williams Road, Irving, TX 75060-3251", "425 San Gabriel Way, Sunnyvale, TX 75182-4613", "37 Highview Circle, Denton, TX 76205-8541", "3273 Shady Glen Drive, Grapevine, TX 76051-6503", "1712 Lynhurst Lane, Denton, TX 76205-8086", "301 Evans DriveVan Alstyne, TX 75495", "1117 Sunset DriveTrophy Club, TX 76262-5445", "5635 Santa Fe Avenue, Dallas, TX 75214", "1407 Cliffwood Road, Euless, TX 76040-6403",
+
+        // cannonteamhomes.com_2021-06-25
+        "324 Ambrose Dr Murphy, TX 750945", "1025 Saint Peter Dr Murphy, TX 750945", "4136 Los Altos Dr Plano, TX 750244",
+
+        // portal.onehome.com_2021-06-25
+        "2203 Forest Creek, McKinney, TX 75072-4327", "1061 Eagles Landing BoulevardOak Point, TX 75068-3070", "121 Las Colinas TrailCross Roads, TX 76227-1721", "3913 Valley View LaneFlower Mound, TX 75022-6108", "5807 Glenmore Drive, Parker, TX 75002-5435", "458 Barnes Bridge Road, Sunnyvale, TX 75182-9110", "2757 Oakwood Drive, Celina, TX 75009-2801", "661 Comanche CircleShady Shores, TX 76208-5167", "1448 Highland Court, Keller, TX 76262", "40 Meadowcreek Drive, Melissa, TX 75454-8906", "4216 Las Brisas Dr, Irving, TX 75038-9046", "110 High Oaks DriveDouble Oak, TX 75077-8261", "263 Whites Hill RoadVan Alstyne, TX 75495-4354", "4033 Bordeaux CircleFlower Mound, TX 75022-7050", "7750 E Parker Road, Wylie, TX 75002-7045", "1320 Stonecreek Court, Garland, TX 75043-1239", "1401 Egan Street, Denton, TX 76201-2734", "2760 Fuller Wiser Road, Euless, TX 76039-7940",
+
+        // portal.onehome.com_2021-06-25
+        "804 Carroll Drive, Garland, TX 75041-4421", "315 Cliffdale Drive, Euless, TX 76040-5485", "2633 Ashley Drive, Garland, TX 75041-2813", "2620 Lismore DriveFlower Mound, TX 75022-4398", "2102 Rock Creek DriveGrand Prairie, TX 75050-2284", "9719 County Road 474Anna, TX 75409-8604", "7157 County Road 277Anna, TX 75409-4206", "1526 7th StreetGrand Prairie, TX 75050-2336", "2180 Snider Lane, Lucas, TX 75002-7922", "2383 Bryant Street, Melissa, TX 75454-3076",
+
+        // portal.onehome.com_2021-06-24
+        "5604 Four Seasons Ln, McKinney, TX 750714",
+        "1915 Baltimore Drive, Allen, TX 75002-2623", "2901 Hagen Drive, Plano, TX 75025-6427", "8612 Spectrum Drive, McKinney, TX 75072-5862",
+        "17606 Squaw Valley Drive, Dallas, TX 75252", "1037 Cassion Drive, Lewisville, TX 75067-7479", "3916 Clifton Drive, Richardson, TX 75082-3623", "7006 Calm Meadow Court, Garland, TX 75044-3489",
+        "125 Mill Crossing EColleyville, TX 76034-3663", "5108 White Pine DriveFlower Mound, TX 75028-5208", "3210 Hill DaleHighland Village, TX 75077", "3504 Preakness DriveFlower Mound, TX 75028-3971", "1501 Shady Grove Circle, Rockwall, TX 75032-5471", "3701 Red Oak Drive, Corinth, TX 76208-5359", "1109 Travis Circle SIrving, TX 75038-6240",
+        "325 Greenfield Dr Murphy, TX 750944",
+
+        // portal.onehome.com_2021-06-24_2
+        "3509 Carlton Court, Sachse, TX 75048-2394", "12819 Ridge Spring Drive, Frisco, TX 75035", "1560 Karen Drive, Argyle, TX 76226-2946", "15824 Gardenia Road, Frisco, TX 75033", "3694 Copper Point Lane, Frisco, TX 75034-0760", "5561 Glenview LaneThe Colony, TX 75056-3785", "2812 Meadow Wood DriveFlower Mound, TX 75022-6732", "9024 Violet Drive, Lantana, TX 76226-1937", "931 Birdsong Drive, Allen, TX 75013-5839", "2928 Hackberry Creek Trail, Celina, TX 75078-9638", "3415 Maggie Road, Melissa, TX 75454-0168", "4465 Sandy Water Lane, Plano, TX 75024-7714", "8609 Orchard Hill Drive, Plano, TX 75025-4793", "3332 Timber Brook Drive, Plano, TX 75074-8746", "5101 Shallow Pond DriveLittle Elm, TX 76227-1938", "427 Long Cove Drive, Fairview, TX 75069-1957", "1408 Anna Marie Lane, Allen, TX 75013-2810", "621 Logans Way Drive, Prosper, TX 75078-2527",
+        "3012 Martha Drive, Wylie, TX 75098-8122",
+
+        // www.realtor.com_2021-06-24
+        "3905 Dendron Dr, Flower Mound, TX 75028",
+
+        // portal.onehome.com_2021-06-24
+        "3021 Normandy Drive, McKinney, TX 75070-4731", "2817 Woods Lane, Garland, TX 75044-2809", "800 Holly Circle, Allen, TX 75002-5216",
+
+        // cannonteamhomes.com_2021-06-24
+        "428 Sloan Creek Pkwy, Fairview, TX 750694",
+
+        // www.realtor.com_2021-06-23
+        "590 Norman Cir, Anna, TX 75409",
+
+        // cannonteamhomes.com_2021-06-23
+        "4200 Honeysuckle Dr McKinney, TX 750704", "3841 Walnut Ridge Ln, Plano, TX 750744", "3504 Hearst Castle Way, Plano, TX 750254",
+
+        // portal.onehome.com_2021-06-23
+        "3012 Colorado Drive, Little Elm, TX 75068-1456", "2616 Longbow Drive, Little Elm, TX 75068-6915", "2317 Reston Drive, McKinney, TX 75072-8836", "1221 Horsetail Drive, Little Elm, TX 75068-4685", "13331 Cottage Grove Drive, Frisco, TX 75033-1684", "8105 Greenwood Drive, Plano, TX 75025-4023", "2804 Whitetail Court, McKinney, TX 75072-7784", "2308 Emerald Lake Lane, Little Elm, TX 75068-5979", "561 Bramante Drive, Plano, TX 75075", "4401 Rock Springs Drive, Plano, TX 75024-3478",
+        "14154 Mensano Drive, Frisco, TX 75035-9277", "9400 Blanco Drive, Lantana, TX 76226-7202", "15191 Maroon Bells Lane, Frisco, TX 75035-0272", "11300 Misty Ridge Drive, Flower Mound, TX 76262-1928", "1605 Eleanor Drive, Fort Worth, TX 76052", "3417 Melrose Court, Wylie, TX 75098", "10517 Sandy Mountain Drive, McKinney, TX 75072-3173",
+        "3841 Walnut Ridge Lane, Plano, TX 75074-1637", "4200 Honeysuckle Drive, McKinney, TX 75070-4499", "3504 Hearst Castle Way, Plano, TX 75025-3701", "917 Kilgore Court, Allen, TX 75013-1115", "222 Lairds Drive, Coppell, TX 75019-7922", "1100 Yale Circle, Plano, TX 75075-8322", "1820 Meadow Ranch Road, McKinney, TX 75071-6497", "2621 E Merlin Drive, Lewisville, TX 75056-5753",
+
+        // www.trulia.com_2021-06-22
+        "2621 Merlin Dr, Lewisville, TX",
+
+        // portal.onehome.com_2021-06-22
+        "4849 Forest Lane, Dallas, TX 75244-7718", "10454 Balsam Court, Frisco, TX 75033-2492", "1006 Creekwood Drive, Garland, TX 75044-2410",
+
+        //www.realtor.com_2021-06-20
+        "1817 Palomino Dr, Rowlett, TX 75088", "1201 E Oak St, Wylie, TX 75098",
+
+        //www.trulia.com_2021-06-20
+        "1920 Fountain Spray Dr, Wylie, TX", "3808 Bluff Creek Ln, Mckinney, TX", "506 Comanche Trl, Plano, TX", "731 Trail Dr, Prosper, TX", "1209 Oakley Dr, Murphy, TX", "1002 Tyler Trl, Wylie, TX", "3800 Oxbow Creek Ln, Plano, TX", "9208 Hunter Chase Dr, Mckinney, TX", "1831 Morning Mist Way, Wylie, TX", "2404 Green Meadow Dr, Sachse, TX", "630 Gene Autry Ln, Plano, TX", "1908 Lorraine Ave, Allen, TX", "1502 Miracle Mile, Wylie, TX", "136 Collin Ct, Murphy, TX", "3222 Berry Holw, Melissa, TX", "325 Daleport Dr, Murphy, TX", "3000 Charles Dr, Wylie, TX", "118 Echo Ridge Ln, Murphy, TX", "261 Wedgewood Way, Lucas, TX", "2002 Blue Water Trl, Wylie, TX", "2040 Hacienda Heights Ln, Frisco, TX", "841 Willowmist Dr, Prosper, TX", "529 Quarter Horse Ln, Frisco, TX", "7909 Sawgrass Dr, Mckinney, TX",
+
+        //cannonteamhomes.com_2021-06-20
+        "341 Apache Trl, Murphy, TX 750945",
+
         //cannonteamhomes.com_2021-06-19
         "4325 Auburn Dr Flower Mound, TX 750284", "7209 Red Cedar Ct Denton, TX 762084", "1108 Shell Beach Dr Little Elm, TX 750684", "1734 Boxwood Ln Wylie, TX 750984", "2105 Friar Ct Flower Mound, TX 750284", "2213 Lakeway Terrace Flower Mound, TX 750285", "1201 Cherry Brook Way Flower Mound, TX 750284", "3121 Ashwood Ct Richardson, TX 750824", "3401 Olivia Dr Wylie, TX 750984", "842 Sherry Ln S Krugerville, TX 762274",
 
@@ -43,7 +126,7 @@ function getAddresses() {
 
         $(jPath).each(function() {
             let address = $(this).text().split(" • ")[0];
-            console.log(address);
+
             address = address.replace(/ Bed$/i, "");
             address = address.replace(/\s{2,}/i, " ");
 
@@ -63,15 +146,19 @@ function getAddresses() {
                 addresses.push(address);
         });
         const currentDate = new Date();
-        console.log(window.location.hostname + "_" + currentDate.toISOString().split('T')[0])
 
-        console.log(addresses);
         let csvContents =
             '"Addresses"\n"' +
             addresses.join('"\n"') +
             '"';
 
-        console.log(csvContents);
+        let addressesText =
+            `   //${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
+                "${addresses.join('", "')}",
+                
+                ${csvContents}`;
+
+        copyToClipboard(addressesText);
     });
 
     //TODO save as csv file
