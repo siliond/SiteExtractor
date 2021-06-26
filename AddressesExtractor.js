@@ -153,7 +153,7 @@ function getAddresses() {
             address = address.replace(/([A-Z]{1}[a-z]+)([A-Z]{1}[A-Za-z]+)(, TX)/, "$1, $2$3");
 
             address = address.trim();
-            console.log(address.split(' ').slice(0, 2).join(' '));
+
             if (address.match(/^ *$/) == null &&
                 address.match(/.*, TX.*/) != null &&
                 !addresses.includes(address) &&
