@@ -183,7 +183,7 @@ function getAddresses() {
                 !addresses.includes(address) &&
                 //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
                 (!excludePrevious || !previousAddresses.find(a => a.indexOf(address.split(' ').slice(0, 2).join(' ')) >= 0)))
-                addresses.push({ address, link });
+                addresses.push([address, link]);
         });
 
         if (addresses.length > 0) {
