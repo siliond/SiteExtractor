@@ -22,7 +22,7 @@ function getAbsolutePath(base, relative) {
     stack.pop(); // remove current file name (or empty string)
     // (omit if "base" is the current folder without trailing slash)
     for (var i = 0; i < parts.length; i++) {
-        if (parts[i] == "." || parts[i] == "")
+        if (!parts[i] || parts[i] == ".")
             continue;
         if (parts[i] == "..")
             stack.pop();
@@ -182,7 +182,7 @@ function getAddresses() {
 
             if (address.match(/^ *$/) == null &&
                 address.match(/.*, TX.*/) != null &&
-                !addresses.includes(address) &&
+                !addresses.map(e => e[0]).includes(address) &&
                 //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
                 (!excludePrevious || !previousAddresses.find(a => a.indexOf(address.split(' ').slice(0, 2).join(' ')) >= 0)))
                 addresses.push([address, link]);
