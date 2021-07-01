@@ -35,6 +35,9 @@ function getAddresses() {
     };
 
     const previousAddresses = [
+        //cannonteamhomes.com_2021-07-01
+        "109 Devenshire Dr Murphy, TX 750945", "445 Smoke Tree Dr Murphy, TX 750944", "7317 Lougheed Plaza Plano, TX 750255", "1500 Bristlewood Dr Mc, Kinney, TX 750724", "323 Sagebrush Trl Murphy, TX 750944", "2117 Shrewsbury Dr Mc, Kinney, TX 750714", "701 Duck Bay Dr Murphy, TX 750944", "2525 Sunnyside Dr Mc, Kinney, TX 750714", "4233 Helmsley Ln Plano, TX 750934", "9897 County Road 745 Princeton, TX 754074",
+
         //www.trulia.com_2021-06-26
         "1001 Finsbury Ln, Forney, TX", "1012 Brigham Dr, Forney, TX", "10474 Country View Ln, Forney, TX", "1028 Hoxton Ln, Forney, TX", "160 Concan Dr, Forney, TX", "Lot 9 A Ceder Elm Ln, Nevada, TX", "459 Chippendale Dr, Rockwall, TX", "2511 Hidden Valley Trl, Sherman, TX", "291 Bronco TrlLittle Elm, TX", "3112 San Saba Ct, Rockwall, TX", "609 FM 2194Farmersville, TX", "610 Scenic Dr, Heath, TX",
         "502 Shelby Trl, Bells, TX", "700 Paradise CvShady Shores, TX", "4809 Lindsey Dr, Rowlett, TX", "2099 Vinson Rd, Wylie, TX", "219 Navajo Trl, Gainesville, TX", "2707 Naomi Ct, Farmersville, TX", "2621 Johnson Ct, Heath, TX", "11 Sunset Trl, Heath, TX", "705 Crestbrook DrFlower Mound, TX", "150 Jordan Creek Rd, Collinsville, TX", "1020 Devonshire Dr NForney, TX",
