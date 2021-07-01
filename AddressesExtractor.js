@@ -146,6 +146,8 @@ function getAddresses() {
         $(jPath).each(function() {
             let address = $(this).text().split(" • ")[0];
             let link = $(this).attr("href");
+            if (!link)
+                link = $(this).closest("a").attr("href");
             console.log(link);
             address = address.replace(/ Bed$/i, "");
             address = address.replace(/\s{2,}/i, " ");
