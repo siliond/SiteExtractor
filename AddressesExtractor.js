@@ -168,7 +168,7 @@ function getAddresses() {
                 link = $(this).closest("a").attr("href");
             if (link)
                 link = getAbsolutePath(window.location.href, link);
-            console.log(link);
+
             address = address.replace(/ Bed$/i, "");
             address = address.replace(/\s{2,}/i, " ");
 
