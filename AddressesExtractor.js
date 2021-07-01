@@ -22,7 +22,7 @@ function getAbsolutePath(base, relative) {
     stack.pop(); // remove current file name (or empty string)
     // (omit if "base" is the current folder without trailing slash)
     for (var i = 0; i < parts.length; i++) {
-        if (parts[i] == ".")
+        if (parts[i] == "." || parts[i] == "")
             continue;
         if (parts[i] == "..")
             stack.pop();
