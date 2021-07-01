@@ -19,8 +19,7 @@ function getAbsolutePath(base, relative) {
 
     var stack = base.split(separator),
         parts = relative.split(separator);
-    if (base[base.length - 1] != separator && stack.length > 1)
-        stack.pop(); // remove current file name (or empty string)
+    stack.pop(); // remove current file name (or empty string)
     // (omit if "base" is the current folder without trailing slash)
     for (var i = 0; i < parts.length; i++) {
         if (parts[i] == ".")
@@ -168,7 +167,7 @@ function getAddresses() {
             if (!link)
                 link = $(this).closest("a").attr("href");
             if (link)
-                link = getAbsolutePath(window.location.hostname, link);
+                link = getAbsolutePath(window.location.href, link);
             console.log(link);
             address = address.replace(/ Bed$/i, "");
             address = address.replace(/\s{2,}/i, " ");
