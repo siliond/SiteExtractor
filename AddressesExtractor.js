@@ -8,9 +8,9 @@
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(function() {
-        console.log('Async: Copying to clipboard was successful!');
+        alert('Async: Copying to clipboard was successful!');
     }, function(err) {
-        console.error('Async: Could not copy text: ', err);
+        alert('Async: Could not copy text: ', err);
     });
 }
 
@@ -191,20 +191,19 @@ function getAddresses() {
         if (addresses.length > 0) {
             const currentDate = new Date();
 
-            let csvContents =
-                '"Addresses","Links"\n"' +
+            let csvContents = '"Addresses","Links"\n"' +
                 addresses.map(e => e.join('","')).join('"\n"') +
                 '"';
 
             let addressesText =
-                `   //${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
-                "${addresses.map(e => e[0]).join('", "')}",
-                
-                ${csvContents}`;
+                `//${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
+"${addresses.map(e => e[0]).join('", "')}",
+
+${csvContents}`;
 
             copyToClipboard(addressesText);
         } else {
-            console.log("No New addressed found.");
+            alert("No New addressed found.");
         }
     });
 
