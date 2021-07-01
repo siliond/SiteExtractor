@@ -196,7 +196,7 @@ function getAddresses() {
 
             let addressesText =
                 `   //${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
-                "${addresses.map(e => e[1]).join('", "')}",
+                "${addresses.map(e => e[0]).join('", "')}",
                 
                 ${csvContents}`;
 
