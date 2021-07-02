@@ -6,37 +6,37 @@
 
 // document.getElementsByTagName('head')[0].appendChild(jq);
 
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(function() {
-        pageLog('Async: Copying to clipboard was successful!', 'green');
-    }, function(err) {
-        pageLog('Async: Could not copy text: ' + err);
-    });
-}
-
-function pageLog(text, color = "red") {
-    $('body').prepend(`<h3 style="color:${color};">${text}</h3>`);
-}
-
-function getAbsolutePath(base, relative) {
-    const separator = "/";
-
-    var stack = base.split(separator),
-        parts = relative.split(separator);
-    stack.pop(); // remove current file name (or empty string)
-    // (omit if "base" is the current folder without trailing slash)
-    for (var i = 0; i < parts.length; i++) {
-        if (!parts[i] || parts[i] == ".")
-            continue;
-        if (parts[i] == "..")
-            stack.pop();
-        else
-            stack.push(parts[i]);
-    }
-    return stack.join("/");
-}
-
 function getAddresses() {
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function() {
+            pageLog('Async: Copying to clipboard was successful!', 'green');
+        }, function(err) {
+            pageLog('Async: Could not copy text: ' + err);
+        });
+    }
+
+    function pageLog(text, color = "red") {
+        $('body').prepend(`<h3 style="color:${color};">${text}</h3>`);
+    }
+
+    function getAbsolutePath(base, relative) {
+        const separator = "/";
+
+        var stack = base.split(separator),
+            parts = relative.split(separator);
+        stack.pop(); // remove current file name (or empty string)
+        // (omit if "base" is the current folder without trailing slash)
+        for (var i = 0; i < parts.length; i++) {
+            if (!parts[i] || parts[i] == ".")
+                continue;
+            if (parts[i] == "..")
+                stack.pop();
+            else
+                stack.push(parts[i]);
+        }
+        return stack.join("/");
+    }
+
     const siteSettings = {
         //https://www.redfin.com/city/30868/TX/Plano/filter/property-type=house,max-price=650k,min-beds=3,min-baths=2,min-year-built=1990,min-lot-size=0.25-acre,include=forsale+mlsfsbo+construction+fsbo+foreclosed,viewport=33.47482:32.6288:-95.97419:-97.62625
         "www.redfin.com": { "Path": "div.link-and-anchor", "ExcludePrevious": true },
