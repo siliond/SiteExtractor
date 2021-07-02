@@ -1,5 +1,8 @@
 const previousAddresses = [
     //cannonteamhomes.com_2021-07-01
+    "831 Bridgeport Ln Prosper, TX 750785", "2805 Crested Butte Dr Richardson, TX 750825", "8102 Ferndale Dr Sachse, TX 750486", "329 Mimosa Dr Murphy, TX 750944",
+
+    //cannonteamhomes.com_2021-07-01
     "109 Devenshire Dr Murphy, TX 750945", "445 Smoke Tree Dr Murphy, TX 750944", "7317 Lougheed Plaza Plano, TX 750255", "1500 Bristlewood Dr Mc, Kinney, TX 750724", "323 Sagebrush Trl Murphy, TX 750944", "2117 Shrewsbury Dr Mc, Kinney, TX 750714", "701 Duck Bay Dr Murphy, TX 750944", "2525 Sunnyside Dr Mc, Kinney, TX 750714", "4233 Helmsley Ln Plano, TX 750934", "9897 County Road 745 Princeton, TX 754074",
 
     //www.trulia.com_2021-06-26
