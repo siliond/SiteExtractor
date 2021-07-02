@@ -8,10 +8,14 @@
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(function() {
-        alert('Async: Copying to clipboard was successful!');
+        pageLog('Async: Copying to clipboard was successful!', 'green');
     }, function(err) {
-        alert('Async: Could not copy text: ', err);
+        pageLog('Async: Could not copy text: ' + err);
     });
+}
+
+function pageLog(text, color = "red") {
+    $('body').prepend(`<h3 style="color:${color};">${text}</h3>`);
 }
 
 function getAbsolutePath(base, relative) {
@@ -100,7 +104,7 @@ ${csvContents}`;
 
             copyToClipboard(addressesText);
         } else {
-            alert("No New addressed found.");
+            pageLog("No New addressed found.");
         }
     });
 
