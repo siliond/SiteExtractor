@@ -63,7 +63,11 @@ function getAddresses() {
         var addresses = [];
 
         $(jPath).each(function() {
+            let status = "New",
+                price = 0;
+
             let address = $(this).text().split(" • ")[0];
+
             let link = $(this).attr("href");
             if (!link)
                 link = $(this).closest("a").attr("href");
@@ -86,13 +90,13 @@ function getAddresses() {
                 !addresses.map(e => e[0]).includes(address) &&
                 //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
                 (!excludePrevious || !previousAddresses.find(a => a.indexOf(address.split(' ').slice(0, 2).join(' ')) >= 0)))
-                addresses.push([address, link]);
+                addresses.push([address, status, price, link]);
         });
 
         if (addresses.length > 0) {
             const currentDate = new Date();
 
-            let csvContents = '"Addresses","Links"\n"' +
+            let csvContents = '"Address","Status","Price","Link"\n"' +
                 addresses.map(e => e.join('","')).join('"\n"') +
                 '"';
 
