@@ -60,7 +60,11 @@ const SiteExtractor = {
     },
 
     jPathDrill: function(elem, extract) {
-        let value = elem.attr(extract.attr);
+        let value;
+
+        if (extract.attr)
+            value = elem.attr(extract.attr);
+
         if (!value) {
             let relativeElem;
 
