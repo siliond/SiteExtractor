@@ -1,4 +1,7 @@
 const previousAddresses = [
+    //cannonteamhomes.com_2021-07-03
+    "435 Dakota Dr Murphy, TX 750944", "7408 Galloway Ct Plano, TX 750244", "2608 Loftsmoor Ln Plano, TX 750255", "8121 Brasstown Dr Mc, Kinney, TX 750704",
+
     //cannonteamhomes.com_2021-07-02
     "1180 Rodeo Dr Murphy, TX 750945", "1704 Endicott Dr Plano, TX 750254",
 
