@@ -38,7 +38,7 @@ const SiteExtractor = {
     },
 
     pageLog: function(text, color = "red") {
-        $('body').prepend(`<h3 style="color:${color};">${text}</h3>`);
+        $('body').prepend(`<h3 style="color:${color};">${text}</h3>`).scrollIntoView();
     },
 
     getAbsolutePath: function(base, relative) {
