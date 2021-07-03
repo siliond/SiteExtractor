@@ -71,7 +71,7 @@ const SiteExtractor = {
             if (extract.closest)
                 relativeElem = $(this).closest(extract.closest);
             if (extract.find)
-                relativeElem = $(this).find(extract.find).attr(extract.attr);
+                relativeElem = $(this).find(extract.find);
 
             if (relativeElem) {
                 if (extract.attr)
