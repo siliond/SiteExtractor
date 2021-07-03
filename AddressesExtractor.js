@@ -90,15 +90,7 @@ const SiteExtractor = {
             var addresses = [];
 
             $(jPaths.address).each(function() {
-                let status = "New",
-                    price = siteExtractor.jPathDrill($(this), jPaths.price);
-
                 let address = $(this).text().split(" • ")[0];
-
-                let link = siteExtractor.jPathDrill($(this), jPaths.link);
-
-                if (link)
-                    link = siteExtractor.getAbsolutePath(window.location.href, link);
 
                 address = address.replace(/ Bed$/i, "");
                 address = address.replace(/\s{2,}/i, " ");
@@ -115,8 +107,17 @@ const SiteExtractor = {
                     address.match(/.*, TX.*/) != null &&
                     !addresses.map(e => e[0]).includes(address) &&
                     //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
-                    (!excludePrevious || !previousAddresses.find(a => a.indexOf(address.split(' ').slice(0, 2).join(' ')) >= 0)))
+                    (!excludePrevious || !previousAddresses.find(a => a.indexOf(address.split(' ').slice(0, 2).join(' ')) >= 0))) {
+                    let status = "New",
+                        price = siteExtractor.jPathDrill($(this), jPaths.price);
+
+                    let link = siteExtractor.jPathDrill($(this), jPaths.link);
+
+                    if (link)
+                        link = siteExtractor.getAbsolutePath(window.location.href, link);
+
                     addresses.push([address, status, price, link]);
+                }
             });
 
             if (addresses.length > 0) {
