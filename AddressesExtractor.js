@@ -31,9 +31,9 @@ const SiteExtractor = {
 
     copyToClipboard: function(text) {
         navigator.clipboard.writeText(text).then(function() {
-            this.pageLog('Async: Copying to clipboard was successful!', 'green');
+            SiteExtractor.pageLog('Async: Copying to clipboard was successful!', 'green');
         }, function(err) {
-            this.pageLog('Async: Could not copy text: ' + err);
+            SiteExtractor.pageLog('Async: Could not copy text: ' + err);
         });
     },
 
@@ -88,8 +88,6 @@ const SiteExtractor = {
         let jPaths = this.siteSettings[window.location.hostname].Paths;
         let excludePrevious = this.siteSettings[window.location.hostname].ExcludePrevious;
 
-        let siteExtractor = this;
-
         jQuery(function($) {
             var addresses = [];
 
@@ -113,12 +111,12 @@ const SiteExtractor = {
                     //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
                     (!excludePrevious || !previousAddresses.find(a => a.indexOf(address.split(' ').slice(0, 2).join(' ')) >= 0))) {
                     let status = "New",
-                        price = siteExtractor.jPathDrill($(this), jPaths.price);
+                        price = SiteExtractor.jPathDrill($(this), jPaths.price);
 
-                    let link = siteExtractor.jPathDrill($(this), jPaths.link);
+                    let link = SiteExtractor.jPathDrill($(this), jPaths.link);
 
                     if (link)
-                        link = siteExtractor.getAbsolutePath(window.location.href, link);
+                        link = SiteExtractor.getAbsolutePath(window.location.href, link);
 
                     addresses.push([address, status, price, link]);
                 }
@@ -137,9 +135,9 @@ const SiteExtractor = {
 
 ${csvContents}`;
 
-                siteExtractor.copyToClipboard(addressesText);
+                SiteExtractor.copyToClipboard(addressesText);
             } else {
-                siteExtractor.pageLog("No New addressed found.");
+                SiteExtractor.pageLog("No New addressed found.");
             }
         });
 
