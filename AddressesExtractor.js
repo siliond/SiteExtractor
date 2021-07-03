@@ -60,6 +60,8 @@ const SiteExtractor = {
         let jPath = this.siteSettings[window.location.hostname].Path;
         let excludePrevious = this.siteSettings[window.location.hostname].ExcludePrevious;
 
+        let siteExtractor = this;
+
         jQuery(function($) {
             var addresses = [];
 
@@ -73,7 +75,7 @@ const SiteExtractor = {
                 if (!link)
                     link = $(this).closest("a").attr("href");
                 if (link)
-                    link = this.getAbsolutePath(window.location.href, link);
+                    link = siteExtractor.getAbsolutePath(window.location.href, link);
 
                 address = address.replace(/ Bed$/i, "");
                 address = address.replace(/\s{2,}/i, " ");
@@ -107,9 +109,9 @@ const SiteExtractor = {
 
 ${csvContents}`;
 
-                this.copyToClipboard(addressesText);
+                siteExtractor.copyToClipboard(addressesText);
             } else {
-                this.pageLog("No New addressed found.");
+                siteExtractor.pageLog("No New addressed found.");
             }
         });
 
