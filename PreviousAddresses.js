@@ -1,4 +1,7 @@
 const previousAddresses = [
+    //cannonteamhomes.com_2021-07-02
+    "1180 Rodeo Dr Murphy, TX 750945", "1704 Endicott Dr Plano, TX 750254",
+
     //cannonteamhomes.com_2021-07-01
     "831 Bridgeport Ln Prosper, TX 750785", "2805 Crested Butte Dr Richardson, TX 750825", "8102 Ferndale Dr Sachse, TX 750486", "329 Mimosa Dr Murphy, TX 750944",
 

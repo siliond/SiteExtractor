@@ -97,7 +97,7 @@ function getAddresses() {
             const currentDate = new Date();
 
             let csvContents = '"Address","Status","Price","Link"\n"' +
-                addresses.map(e => e.join('","')).join('"\n"') +
+                addresses.map(e => e.join('"    "')).join('"\n"') +
                 '"';
 
             let addressesText =
