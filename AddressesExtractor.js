@@ -18,7 +18,10 @@ const SiteExtractor = {
         "www.realtor.com": { "Path": "div.srp-page-address", "ExcludePrevious": true },
 
         //https://cannonteamhomes.com/search?view=gallery_view#?q_limit=36&mlsId=17&price=350000:650000&bedrooms=3:&sqFeet=2500:&acreage=0.25:&year=1990:&propertyType=Residential&status=1&polygon=(33.22,-96.504),(33.285,-96.943),(33.273,-97.001),(33.211,-97.042),(33.22,-97.182),(33.158,-97.196),(32.986,-97.067),(32.914,-96.866),(32.905,-96.726),(33.045,-96.482),(33.14,-96.484),(33.234,-96.526)&q_sort=createdAt-&q_offset=0
-        "cannonteamhomes.com": { "Path": "div.listing-detail", "ExcludePrevious": true },
+        "cannonteamhomes.com": {
+            "Paths": { address: "div.listing-detail", price: "h2", link: { closest: "a", attr: "href" }, price: { find: "h2" } },
+            "ExcludePrevious": true
+        },
 
         //https://portal.onehome.com/en-US/properties/list?token=eyJPU04iOiJOVFJFSVMiLCJjb250YWN0aWQiOiI0MzQ1MTU0IiwiZW1haWwiOiJzaWxpb25kQGdtYWlsLmNvbSIsImFnZW50aWQiOiIzMTYxOSJ9&searchId=58b9455d-96ba-4ccc-97de-4624ae8af101
         "portal.onehome.com": { "Path": "div.address-content", "ExcludePrevious": true },
@@ -56,8 +59,29 @@ const SiteExtractor = {
         return stack.join("/");
     },
 
+    jPathDrill: function(elem, extract) {
+        let value = elem.attr(extract.attr);
+        if (!value) {
+            let relativeElem;
+
+            if (extract.closest)
+                relativeElem = $(this).closest(extract.closest);
+            if (extract.find)
+                relativeElem = $(this).find(extract.find).attr(extract.attr);
+
+            if (relativeElem) {
+                if (extract.attr)
+                    value = relativeElem.attr(extract.attr);
+                else
+                    value = relativeElem.text();
+            }
+        }
+
+        return value;
+    },
+
     getAddresses: function() {
-        let jPath = this.siteSettings[window.location.hostname].Path;
+        let jPaths = this.siteSettings[window.location.hostname].Paths;
         let excludePrevious = this.siteSettings[window.location.hostname].ExcludePrevious;
 
         let siteExtractor = this;
@@ -65,15 +89,14 @@ const SiteExtractor = {
         jQuery(function($) {
             var addresses = [];
 
-            $(jPath).each(function() {
+            $(jPaths.address).each(function() {
                 let status = "New",
-                    price = 0;
+                    price = siteExtractor.jPathDrill($(this), jPaths.price);
 
                 let address = $(this).text().split(" • ")[0];
 
-                let link = $(this).attr("href");
-                if (!link)
-                    link = $(this).closest("a").attr("href");
+                let link = siteExtractor.jPathDrill($(this), jPaths.link);
+
                 if (link)
                     link = siteExtractor.getAbsolutePath(window.location.href, link);
 
