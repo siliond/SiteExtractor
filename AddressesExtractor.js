@@ -162,7 +162,7 @@ const SiteExtractor = {
                 const currentDate = new Date();
 
                 let csvContents = '"' +
-                    addresses.map(e => e.map(o => o.values).join('"\t"')).join('"\n"') +
+                    addresses.map(e => e.values().join('"\t"')).join('"\n"') +
                     '"';
 
                 let addressesText =
