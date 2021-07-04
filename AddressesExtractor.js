@@ -22,7 +22,7 @@ const SiteExtractor = {
             "Paths": {
                 Address: { Path: "div.listing-detail" },
                 Status: { Value: "New" },
-                Price: { Find: "h2" },
+                Price: { Sibblings: "h2" },
                 Link: { Closest: "a", Attr: "href" }
             },
             "ExcludePrevious": true
@@ -83,8 +83,13 @@ const SiteExtractor = {
                 relativeElem = elem.closest(extract.Closest);
             if (extract.Find)
                 relativeElem = elem.find(extract.Find);
+            if (extract.Sibblings)
+                relativeElem = elem.sibblings(extract.Sibblings);
 
             if (relativeElem) {
+                if (Array.isArray(relativeElem))
+                    relativeElem = relativeElem[0];
+
                 if (extract.Attr)
                     value = relativeElem.attr(extract.Attr);
                 else
