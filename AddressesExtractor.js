@@ -65,20 +65,20 @@ const SiteExtractor = {
         let extract = jPaths[prop],
             value;
 
-        if (extract.attr)
-            value = elem.attr(extract.attr);
+        if (extract.Attr)
+            value = elem.attr(extract.Attr);
 
         if (!value) {
             let relativeElem = elem;
 
-            if (extract.closest)
-                relativeElem = elem.closest(extract.closest);
-            if (extract.find)
-                relativeElem = elem.find(extract.find);
+            if (extract.Closest)
+                relativeElem = elem.closest(extract.Closest);
+            if (extract.Find)
+                relativeElem = elem.find(extract.Find);
 
             if (relativeElem) {
-                if (extract.attr)
-                    value = relativeElem.attr(extract.attr);
+                if (extract.Attr)
+                    value = relativeElem.attr(extract.Attr);
                 else
                     value = relativeElem.text();
             }
