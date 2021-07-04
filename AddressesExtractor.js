@@ -59,8 +59,9 @@ const SiteExtractor = {
         return stack.join("/");
     },
 
-    jPathDrill: function(elem, extract) {
-        let value;
+    jPathDrill: function(elem, jPaths, prop) {
+        let extract = jPaths[prop],
+            value;
 
         if (extract.attr)
             value = elem.attr(extract.attr);
@@ -69,9 +70,9 @@ const SiteExtractor = {
             let relativeElem;
 
             if (extract.closest)
-                relativeElem = $(this).closest(extract.closest);
+                relativeElem = elem.closest(extract.closest);
             if (extract.find)
-                relativeElem = $(this).find(extract.find);
+                relativeElem = elem.find(extract.find);
 
             if (relativeElem) {
                 if (extract.attr)
@@ -81,7 +82,18 @@ const SiteExtractor = {
             }
         }
 
+        let propFunction = SiteExtractor[`onJPath${prop}`];
+        if (propFunction)
+            value = propFunction(value);
+
         return value;
+    },
+
+    onJPathlink: function(link) {
+        if (link)
+            link = SiteExtractor.getAbsolutePath(window.location.href, link);
+
+        return link;
     },
 
     getAddresses: function() {
@@ -111,12 +123,9 @@ const SiteExtractor = {
                     //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
                     (!excludePrevious || !previousAddresses.find(a => a.indexOf(address.split(' ').slice(0, 2).join(' ')) >= 0))) {
                     let status = "New",
-                        price = SiteExtractor.jPathDrill($(this), jPaths.price);
+                        price = SiteExtractor.jPathDrill($(this), jPaths, "price");
 
-                    let link = SiteExtractor.jPathDrill($(this), jPaths.link);
-
-                    if (link)
-                        link = SiteExtractor.getAbsolutePath(window.location.href, link);
+                    let link = SiteExtractor.jPathDrill($(this), jPaths, "link");
 
                     addresses.push([address, status, price, link]);
                 }
