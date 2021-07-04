@@ -19,7 +19,7 @@ const SiteExtractor = {
 
         //https://cannonteamhomes.com/search?view=gallery_view#?q_limit=36&mlsId=17&price=350000:650000&bedrooms=3:&sqFeet=2500:&acreage=0.25:&year=1990:&propertyType=Residential&status=1&polygon=(33.22,-96.504),(33.285,-96.943),(33.273,-97.001),(33.211,-97.042),(33.22,-97.182),(33.158,-97.196),(32.986,-97.067),(32.914,-96.866),(32.905,-96.726),(33.045,-96.482),(33.14,-96.484),(33.234,-96.526)&q_sort=createdAt-&q_offset=0
         "cannonteamhomes.com": {
-            "Paths": { address: "div.listing-detail", price: "h2", link: { closest: "a", attr: "href" }, price: { find: "h2" } },
+            "Paths": { Address: { Attr: "div.listing-detail" }, Price: { Closest: "a", Attr: "h2" }, link: { Closest: "a", Attr: "href" }, Price: { Find: "h2" } },
             "ExcludePrevious": true
         },
 
@@ -59,7 +59,9 @@ const SiteExtractor = {
         return stack.join("/");
     },
 
-    jPathDrill: function(elem, jPaths, prop) {
+    jPathDrill: function(siteSetting, addresses, elem, prop) {
+        let jPaths = siteSetting.Paths;
+
         let extract = jPaths[prop],
             value;
 
@@ -67,7 +69,7 @@ const SiteExtractor = {
             value = elem.attr(extract.attr);
 
         if (!value) {
-            let relativeElem;
+            let relativeElem = elem;
 
             if (extract.closest)
                 relativeElem = elem.closest(extract.closest);
@@ -84,63 +86,80 @@ const SiteExtractor = {
 
         let propFunction = SiteExtractor[`onJPath${prop}`];
         if (propFunction)
-            value = propFunction(value);
+            value = propFunction(siteSetting, addresses, value);
 
         return value;
     },
 
-    onJPathlink: function(link) {
-        if (link)
-            link = SiteExtractor.getAbsolutePath(window.location.href, link);
+    onJPathLink: function(siteSetting, addresses, value) {
+        if (value)
+            value = SiteExtractor.getAbsolutePath(window.location.href, value);
 
-        return link;
+        return value;
+    },
+
+    onJPathAddress: function(siteSetting, addresses, value) {
+        let excludePrevious = siteSetting.ExcludePrevious;
+
+        value = value.split(" • ")[0];
+
+        value = value.replace(/ Bed$/i, "");
+        value = value.replace(/\s{2,}/i, " ");
+
+        //Strip extras "4428 Elmhurst DrivePlano, TX 75093-3257 4 bd 3 ba 3,067 sqft MLS #14597644"
+        value = value.replace(/(TX [0-9\-]{5,10}).*/i, "$1");
+
+        //Fix missing space before city: "790 Manchester AvenueProsper, TX 75078-1447"
+        value = value.replace(/([A-Z]{1}[a-z]+)([A-Z]{1}[A-Za-z]+)(, TX)/, "$1, $2$3");
+
+        value = value.trim();
+
+        if (value.match(/^ *$/) == null &&
+            value.match(/.*, TX.*/) != null &&
+            !addresses.map(e => e[0]).includes(value) &&
+            //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
+            (!excludePrevious || !previousAddresses.find(a => a.indexOf(value.split(' ').slice(0, 2).join(' ')) >= 0)))
+            return value;
+        else
+            return null;
     },
 
     getAddresses: function() {
+        let siteSetting = this.siteSettings[window.location.hostname];
         let jPaths = this.siteSettings[window.location.hostname].Paths;
-        let excludePrevious = this.siteSettings[window.location.hostname].ExcludePrevious;
+        let addresProps = ["Address", "Status", "Price", "Link"];
 
         jQuery(function($) {
             var addresses = [];
 
-            $(jPaths.address).each(function() {
-                let address = $(this).text().split(" • ")[0];
+            $(jPaths.Address).each(function() {
+                let addressElement = {};
 
-                address = address.replace(/ Bed$/i, "");
-                address = address.replace(/\s{2,}/i, " ");
+                for (let i = 0; i < addresProps.length; i++) {
+                    const prop = addresProps[i];
 
-                //Strip extras "4428 Elmhurst DrivePlano, TX 75093-3257 4 bd 3 ba 3,067 sqft MLS #14597644"
-                address = address.replace(/(TX [0-9\-]{5,10}).*/i, "$1");
+                    addressElement[prop] = SiteExtractor.jPathDrill(siteSetting, addresses, $(this), prop);
 
-                //Fix missing space before city: "790 Manchester AvenueProsper, TX 75078-1447"
-                address = address.replace(/([A-Z]{1}[a-z]+)([A-Z]{1}[A-Za-z]+)(, TX)/, "$1, $2$3");
-
-                address = address.trim();
-
-                if (address.match(/^ *$/) == null &&
-                    address.match(/.*, TX.*/) != null &&
-                    !addresses.map(e => e[0]).includes(address) &&
-                    //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
-                    (!excludePrevious || !previousAddresses.find(a => a.indexOf(address.split(' ').slice(0, 2).join(' ')) >= 0))) {
-                    let status = "New",
-                        price = SiteExtractor.jPathDrill($(this), jPaths, "price");
-
-                    let link = SiteExtractor.jPathDrill($(this), jPaths, "link");
-
-                    addresses.push([address, status, price, link]);
+                    if (i == 0 && !addressElement[prop]) {
+                        addressElement = null;
+                        break;
+                    }
                 }
+
+                if (addressElement)
+                    addresses.push(addressElement);
             });
 
             if (addresses.length > 0) {
                 const currentDate = new Date();
 
-                let csvContents = '"Address","Status","Price","Link"\n"' +
-                    addresses.map(e => e.join('"\t"')).join('"\n"') +
+                let csvContents = '"' +
+                    addresses.map(e => e.map(o => o.values).join('"\t"')).join('"\n"') +
                     '"';
 
                 let addressesText =
                     `//${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
-"${addresses.map(e => e[0]).join('", "')}",
+"${addresses.map(e => e[addresProps[0]]).join('", "')}",
 
 ${csvContents}`;
 
