@@ -1,4 +1,7 @@
 const previousAddresses = [
+    //cannonteamhomes.com_2021-07-04
+    "520 Smoke Tree Dr Murphy, TX 750944", "435 Dakota Dr Murphy, TX 750944",
+
     //cannonteamhomes.com_2021-07-03
     "7408 Galloway Ct Plano, TX 750244", "2608 Loftsmoor Ln Plano, TX 750255", "8121 Brasstown Dr Mc, Kinney, TX 750704",
 
