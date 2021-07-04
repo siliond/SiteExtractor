@@ -124,7 +124,7 @@ const SiteExtractor = {
 
         if (value.match(/^ *$/) == null &&
             value.match(/.*, TX.*/) != null &&
-            !addresses.map(e => e[0]).includes(value) &&
+            !addresses.map(e => e.Address).includes(value) &&
             //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
             (!excludePrevious || !previousAddresses.find(a => a.indexOf(value.split(' ').slice(0, 2).join(' ')) >= 0)))
             return value;
@@ -162,7 +162,7 @@ const SiteExtractor = {
                 const currentDate = new Date();
 
                 let csvContents = '"' +
-                    addresses.map(e => e.values().join('"\t"')).join('"\n"') +
+                    addresses.map(e => Object.values(e).join('"\t"')).join('"\n"') +
                     '"';
 
                 let addressesText =
