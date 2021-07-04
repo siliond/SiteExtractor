@@ -19,7 +19,7 @@ const SiteExtractor = {
 
         //https://cannonteamhomes.com/search?view=gallery_view#?q_limit=36&mlsId=17&price=350000:650000&bedrooms=3:&sqFeet=2500:&acreage=0.25:&year=1990:&propertyType=Residential&status=1&polygon=(33.22,-96.504),(33.285,-96.943),(33.273,-97.001),(33.211,-97.042),(33.22,-97.182),(33.158,-97.196),(32.986,-97.067),(32.914,-96.866),(32.905,-96.726),(33.045,-96.482),(33.14,-96.484),(33.234,-96.526)&q_sort=createdAt-&q_offset=0
         "cannonteamhomes.com": {
-            "Paths": { Address: { Attr: "div.listing-detail" }, Price: { Closest: "a", Attr: "h2" }, Link: { Closest: "a", Attr: "href" }, Price: { Find: "h2" } },
+            "Paths": { Address: { Path: "div.listing-detail" }, Price: { Closest: "a", Attr: "h2" }, Link: { Closest: "a", Attr: "href" }, Price: { Find: "h2" } },
             "ExcludePrevious": true
         },
 
@@ -132,7 +132,7 @@ const SiteExtractor = {
         jQuery(function($) {
             var addresses = [];
 
-            $(jPaths.Address).each(function() {
+            $(jPaths.Address.Path).each(function() {
                 let addressElement = {};
 
                 for (let i = 0; i < addresProps.length; i++) {
