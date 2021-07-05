@@ -20,10 +20,18 @@ const SiteExtractor = {
         //https://cannonteamhomes.com/search?view=gallery_view#?q_limit=36&mlsId=17&price=350000:650000&bedrooms=3:&sqFeet=2500:&acreage=0.25:&year=1990:&propertyType=Residential&status=1&polygon=(33.22,-96.504),(33.285,-96.943),(33.273,-97.001),(33.211,-97.042),(33.22,-97.182),(33.158,-97.196),(32.986,-97.067),(32.914,-96.866),(32.905,-96.726),(33.045,-96.482),(33.14,-96.484),(33.234,-96.526)&q_sort=createdAt-&q_offset=0
         "cannonteamhomes.com": {
             "Paths": {
+                //addresses
                 Address: { Path: "div.listing-detail" },
                 Status: { Value: "New" },
                 Price: { Siblings: "h2" },
-                Link: { Closest: "a", Attr: "href" }
+                Link: { Closest: "a", Attr: "href" },
+
+                //address
+                Year: { Path: 'span.header:contains("Year Built")', Siblings: 'span.content' },
+                Bedrooms: { Path: 'small:contains("Bed")', Siblings: 'h4.no-margin' },
+                Bathrooms: { Path: 'small:contains("Bath")', Siblings: 'h4.no-margin' },
+                SqFeet: { Path: 'small:contains("SqFt")', Siblings: 'h4.no-margin' },
+                Lot: { Path: 'span.header:contains("Lot/Acreage")', Siblings: 'span.content' }
             },
             "ExcludePrevious": true
         },
@@ -137,10 +145,21 @@ const SiteExtractor = {
             return null;
     },
 
+    getAddress: function() {
+        let addressProps = ["Year", "Bedrooms", "Bathrooms", "SqFeet", "Lot"];
+
+        return this.getElements(addressProps);
+    },
+
     getAddresses: function() {
+        let addressProps = ["Address", "Status", "Price", "Link"];
+
+        return this.getElements(addressProps);
+    },
+
+    getElements: function(elementProps) {
         let siteSetting = this.siteSettings[window.location.hostname];
         let jPaths = this.siteSettings[window.location.hostname].Paths;
-        let addresProps = ["Address", "Status", "Price", "Link"];
 
         jQuery(function($) {
             var addresses = [];
@@ -148,8 +167,8 @@ const SiteExtractor = {
             $(jPaths.Address.Path).each(function() {
                 let addressElement = {};
 
-                for (let i = 0; i < addresProps.length; i++) {
-                    const prop = addresProps[i];
+                for (let i = 0; i < elementProps.length; i++) {
+                    const prop = elementProps[i];
 
                     addressElement[prop] = SiteExtractor.jPathDrill(siteSetting, addresses, $(this), prop);
 
@@ -172,7 +191,7 @@ const SiteExtractor = {
 
                 let addressesText =
                     `//${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
-"${addresses.map(e => e[addresProps[0]]).join('", "')}",
+"${addresses.map(e => e[elementProps[0]]).join('", "')}",
 
 ${csvContents}`;
 
