@@ -184,14 +184,14 @@ const SiteExtractor = {
             //addresses
             if (elementProps.includes('Address')) {
                 $(jPaths.Address.Path).each(function() {
-                    let element = SiteExtractor.getElement(siteSetting, elementProps, elements, $(this));
+                    let element = SiteExtractor.getElementDetails(siteSetting, elementProps, elements, $(this));
 
                     if (element)
                         elements.push(element);
                 });
             } else {
                 //address
-                let element = SiteExtractor.getElement(siteSetting, elementProps, elements, null);
+                let element = SiteExtractor.getElementDetails(siteSetting, elementProps, elements, null);
 
                 if (element)
                     elements.push(element);
