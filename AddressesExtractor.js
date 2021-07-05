@@ -157,45 +157,60 @@ const SiteExtractor = {
         return this.getElements(addressProps);
     },
 
+    getElementDetails(siteSetting, elementProps, elements, jElement) {
+        let element = {};
+
+        for (let i = 0; i < elementProps.length; i++) {
+            const prop = elementProps[i];
+
+            element[prop] = SiteExtractor.jPathDrill(siteSetting, elements, jElement, prop);
+
+            if (i == 0 && !element[prop]) {
+                element = null;
+                break;
+            }
+        }
+
+        return element;
+    },
+
     getElements: function(elementProps) {
         let siteSetting = this.siteSettings[window.location.hostname];
         let jPaths = this.siteSettings[window.location.hostname].Paths;
 
         jQuery(function($) {
-            var addresses = [];
+            var elements = [];
 
-            $(jPaths.Address.Path).each(function() {
-                let addressElement = {};
+            //addresses
+            if (jPaths.Address) {
+                $(jPaths.Address.Path).each(function() {
+                    let element = SiteExtractor.getElement(siteSetting, elementProps, elements, $(this));
 
-                for (let i = 0; i < elementProps.length; i++) {
-                    const prop = elementProps[i];
+                    if (element)
+                        elements.push(element);
+                });
+            } else {
+                //address
+                let element = SiteExtractor.getElement(siteSetting, elementProps, elements, null);
 
-                    addressElement[prop] = SiteExtractor.jPathDrill(siteSetting, addresses, $(this), prop);
+                if (element)
+                    elements.push(element);
+            }
 
-                    if (i == 0 && !addressElement[prop]) {
-                        addressElement = null;
-                        break;
-                    }
-                }
-
-                if (addressElement)
-                    addresses.push(addressElement);
-            });
-
-            if (addresses.length > 0) {
+            if (elements.length > 0) {
                 const currentDate = new Date();
 
                 let csvContents = '"' +
-                    addresses.map(e => Object.values(e).join('"\t"')).join('"\n"') +
+                    elements.map(e => Object.values(e).join('"\t"')).join('"\n"') +
                     '"';
 
-                let addressesText =
+                let elementsText =
                     `//${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
-"${addresses.map(e => e[elementProps[0]]).join('", "')}",
+"${elements.map(e => e[elementProps[0]]).join('", "')}",
 
 ${csvContents}`;
 
-                SiteExtractor.copyToClipboard(addressesText);
+                SiteExtractor.copyToClipboard(elementsText);
             } else {
                 SiteExtractor.pageLog("No New addressed found.");
             }
