@@ -87,12 +87,14 @@ const SiteExtractor = {
         if (!value) {
             let relativeElem = elem;
 
+            if (extract.Path)
+                relativeElem = $(extract.Path);
             if (extract.Closest)
-                relativeElem = elem.closest(extract.Closest);
+                relativeElem = relativeElem.closest(extract.Closest);
             if (extract.Find)
-                relativeElem = elem.find(extract.Find);
+                relativeElem = relativeElem.find(extract.Find);
             if (extract.Siblings)
-                relativeElem = elem.siblings(extract.Siblings);
+                relativeElem = relativeElem.siblings(extract.Siblings);
 
             if (relativeElem) {
                 if (Array.isArray(relativeElem))
