@@ -182,7 +182,7 @@ const SiteExtractor = {
             var elements = [];
 
             //addresses
-            if (jPaths.Address) {
+            if (elementProps.includes('Address')) {
                 $(jPaths.Address.Path).each(function() {
                     let element = SiteExtractor.getElement(siteSetting, elementProps, elements, $(this));
 
