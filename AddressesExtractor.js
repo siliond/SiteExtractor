@@ -30,14 +30,30 @@ const SiteExtractor = {
                 Year: { Path: 'span.header:contains("Year Built")', Siblings: 'span.content' },
                 Bedrooms: { Path: 'small:contains("Bed")', Siblings: 'h4.no-margin' },
                 Bathrooms: { Path: 'small:contains("Bath")', Siblings: 'h4.no-margin' },
-                SqFeet: { Path: 'small:contains("SqFt")', Siblings: 'h4.no-margin' },
+                SqFeet: { Path: 'small:contains("SqFt")' },
                 Lot: { Path: 'span.header:contains("Lot/Acreage")', Siblings: 'span.content' }
             },
             "ExcludePrevious": true
         },
 
         //https://portal.onehome.com/en-US/properties/list?token=eyJPU04iOiJOVFJFSVMiLCJjb250YWN0aWQiOiI0MzQ1MTU0IiwiZW1haWwiOiJzaWxpb25kQGdtYWlsLmNvbSIsImFnZW50aWQiOiIzMTYxOSJ9&searchId=58b9455d-96ba-4ccc-97de-4624ae8af101
-        "portal.onehome.com": { "Path": "div.address-content", "ExcludePrevious": true },
+        "portal.onehome.com": {
+            "Paths": {
+                //addresses
+                Address: { Path: "div.address-content" },
+                Status: { Value: "New" },
+                Price: { Siblings: "p.price" },
+                Link: { Closest: "div.property-container", Find: "a", Attr: "href" },
+
+                //address
+                Year: { Path: 'dt.label:contains("Year Built")', Siblings: 'dd.detail' },
+                Bedrooms: { Path: 'span[data-qa="beds"]' },
+                Bathrooms: { Path: 'span[data-qa="baths"]' },
+                SqFeet: { Path: 'span[data-qa="sqft"]' },
+                Lot: { Path: 'dt.label:contains("Lot Size Area:")', Siblings: 'dd.detail' }
+            },
+            "ExcludePrevious": true
+        },
 
         "www.google.com": { "Path": "td[dir='auto']", "ExcludePrevious": false }
     },
@@ -117,6 +133,32 @@ const SiteExtractor = {
     onJPathLink: function(siteSetting, addresses, value) {
         if (value)
             value = SiteExtractor.getAbsolutePath(window.location.href, value);
+
+        return value;
+    },
+
+    onJPathYear: function(siteSetting, addresses, value) {
+        return SiteExtractor.toNumber(value);
+    },
+
+    onJPathBedrooms: function(siteSetting, addresses, value) {
+        return SiteExtractor.toNumber(value);
+    },
+
+    onJPathBathrooms: function(siteSetting, addresses, value) {
+        return SiteExtractor.toNumber(value);
+    },
+
+    onJPathSqFeet: function(siteSetting, addresses, value) {
+        return SiteExtractor.toNumber(value);
+    },
+
+    onJPathLot: function(siteSetting, addresses, value) {
+        return SiteExtractor.toNumber(value);
+    },
+
+    toNumber: function(value) {
+        value = parseFloat(value.replace(/,/g, ''));
 
         return value;
     },
