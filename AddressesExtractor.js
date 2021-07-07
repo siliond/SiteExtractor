@@ -142,11 +142,11 @@ const SiteExtractor = {
     },
 
     onJPathBedrooms: function(siteSetting, addresses, value) {
-        return SiteExtractor.toNumber(value);
+        return SiteExtractor.toNumber(SiteExtractor.splitDot(value)[1]);
     },
 
     onJPathBathrooms: function(siteSetting, addresses, value) {
-        return SiteExtractor.toNumber(value);
+        return SiteExtractor.toNumber(SiteExtractor.splitDot(value)[1]);
     },
 
     onJPathSqFeet: function(siteSetting, addresses, value) {
@@ -163,10 +163,16 @@ const SiteExtractor = {
         return value;
     },
 
+    splitDot: function(value) {
+        value = value.split(" • ");
+
+        return value;
+    },
+
     onJPathAddress: function(siteSetting, addresses, value) {
         let excludePrevious = siteSetting.ExcludePrevious;
 
-        value = value.split(" • ")[0];
+        value = SiteExtractor.splitDot(value)[0];
 
         value = value.replace(/ Bed$/i, "");
         value = value.replace(/\s{2,}/i, " ");
