@@ -166,8 +166,8 @@ const SiteExtractor = {
     splitDot: function(value) {
         value = value.split(" • ");
 
-        if (!Array.isArray(value))
-            value = value.split(' · ');
+        if (value.length == 1)
+            value = value[0].split(' · ');
 
         return value;
     },
