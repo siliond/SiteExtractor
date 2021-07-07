@@ -201,7 +201,7 @@ const SiteExtractor = {
     getAddress: function() {
         let addressProps = ["Year", "Bedrooms", "Bathrooms", "SqFeet", "Lot"];
 
-        return this.getElements(addressProps);
+        return this.getElements(addressProps, true);
     },
 
     getAddresses: function() {
@@ -227,7 +227,7 @@ const SiteExtractor = {
         return element;
     },
 
-    getElements: function(elementProps) {
+    getElements: function(elementProps, noPrefix = false) {
         let siteSetting = this.siteSettings[window.location.hostname];
         let jPaths = this.siteSettings[window.location.hostname].Paths;
 
@@ -256,8 +256,12 @@ const SiteExtractor = {
                 let csvContents = '"' +
                     elements.map(e => Object.values(e).join('"\t"')).join('"\n"') +
                     '"';
+                let elementsText;
 
-                let elementsText =
+                if (noPrefix)
+                    elementsText = csvContents;
+                else
+                    elementsText =
                     `//${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
 "${elements.map(e => e[elementProps[0]]).join('", "')}",
 
