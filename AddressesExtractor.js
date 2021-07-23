@@ -45,7 +45,7 @@ const SiteExtractor = {
                 Status: { Value: "New" },
                 Price: { Siblings: "p.price" },
                 Link: { Closest: "div.property-container", Find: "a", Attr: "href" },
-                ListingType: { Closest: "div.property-container", Find: "div.callout-container", Expected: "New Listing" },
+                ListingType: { Closest: "div.property-container", Find: "div.callout-container", NotExpected: "Under Contract" },
 
                 //address
                 Year: { Path: 'dt.label:contains("Year Built")', Siblings: 'dd.detail' },
@@ -195,6 +195,9 @@ const SiteExtractor = {
 
             if (extract.Expected)
                 goodListingType = (value == extract.Expected);
+
+            if (extract.NotExpected)
+                goodListingType = (value.indexOf(extract.NotExpected) < 0);
         }
 
         return goodListingType;
