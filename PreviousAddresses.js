@@ -1,5 +1,8 @@
 const previousAddresses = [
     //portal.onehome.com_2021-07-23
+    "19 Preakness Place RoadVan Alstyne, TX 75495-4800", "1001 Creek Bend, Carrollton, TX 75007-2787", "5101 Sweetgum Court, McKinney, TX 75071-8217",
+
+    //portal.onehome.com_2021-07-23
     "3464 Estes Park Lane, McKinney, TX 75070-2688", "3824 Camino Drive, Plano, TX 75074-3444", "236 Crepe Myrtle Lane, Murphy, TX 75094-4329", "557 Leavalley Lane, Coppell, TX 75019-4079", "17327 Davenport Road, Dallas, TX 75248-1367", "1451 Benavites DriveLittle Elm, TX 75068-1616", "982 Crystal Lake Drive, Frisco, TX 75036-8865", "935 Southwood DriveHighland Village, TX 75077-6434",
 
     //portal.onehome.com_2021-07-23
