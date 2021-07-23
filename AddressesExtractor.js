@@ -45,6 +45,7 @@ const SiteExtractor = {
                 Status: { Value: "New" },
                 Price: { Siblings: "p.price" },
                 Link: { Closest: "div.property-container", Find: "a", Attr: "href" },
+                ListingType: { Closest: "div.callout-container", Expected: "New Listing" },
 
                 //address
                 Year: { Path: 'dt.label:contains("Year Built")', Siblings: 'dd.detail' },
@@ -89,11 +90,18 @@ const SiteExtractor = {
         return stack.join("/");
     },
 
-    jPathDrill: function(siteSetting, addresses, elem, prop) {
+    getPropExtract: function(siteSetting, prop) {
         let jPaths = siteSetting.Paths;
 
-        let extract = jPaths[prop],
+        let extract = jPaths[prop];
+
+        return extract;
+    },
+
+    jPathDrill: function(siteSetting, addresses, elem, prop) {
+        let extract = SiteExtractor.getPropExtract(siteSetting, prop),
             value;
+        let relativeElem = elem;
 
         if (extract.Value)
             value = extract.Value;
@@ -102,8 +110,6 @@ const SiteExtractor = {
             value = elem.attr(extract.Attr);
 
         if (!value) {
-            let relativeElem = elem;
-
             if (extract.Path && prop != SiteExtractor.mainProp)
                 relativeElem = $(extract.Path);
             if (extract.Closest)
@@ -126,35 +132,35 @@ const SiteExtractor = {
 
         let propFunction = SiteExtractor[`onJPath${prop}`];
         if (propFunction)
-            value = propFunction(siteSetting, addresses, value);
+            value = propFunction(siteSetting, addresses, value, relativeElem);
 
         return value;
     },
 
-    onJPathLink: function(siteSetting, addresses, value) {
+    onJPathLink: function(siteSetting, addresses, value, jElement) {
         if (value)
             value = SiteExtractor.getAbsolutePath(window.location.href, value);
 
         return value;
     },
 
-    onJPathYear: function(siteSetting, addresses, value) {
+    onJPathYear: function(siteSetting, addresses, value, jElement) {
         return SiteExtractor.toNumber(value);
     },
 
-    onJPathBedrooms: function(siteSetting, addresses, value) {
+    onJPathBedrooms: function(siteSetting, addresses, value, jElement) {
         return SiteExtractor.toNumber(SiteExtractor.splitDot(value)[1]);
     },
 
-    onJPathBathrooms: function(siteSetting, addresses, value) {
+    onJPathBathrooms: function(siteSetting, addresses, value, jElement) {
         return SiteExtractor.toNumber(SiteExtractor.splitDot(value)[1]);
     },
 
-    onJPathSqFeet: function(siteSetting, addresses, value) {
+    onJPathSqFeet: function(siteSetting, addresses, value, jElement) {
         return SiteExtractor.toNumber(value);
     },
 
-    onJPathLot: function(siteSetting, addresses, value) {
+    onJPathLot: function(siteSetting, addresses, value, jElement) {
         return SiteExtractor.toNumber(value);
     },
 
@@ -173,30 +179,48 @@ const SiteExtractor = {
         return value;
     },
 
-    onJPathAddress: function(siteSetting, addresses, value) {
-        let excludePrevious = siteSetting.ExcludePrevious;
+    checkListingType: function(siteSetting, addresses, jElement) {
+        let goodListingType = true;
 
-        value = SiteExtractor.splitDot(value)[0];
+        let value = SiteExtractor.jPathDrill(siteSetting, addresses, jElement, "ListingType");
 
-        value = value.replace(/ Bed$/i, "");
-        value = value.replace(/\s{2,}/i, " ");
+        if (value) {
+            let extract = SiteExtractor.getPropExtract(siteSetting, prop);
 
-        //Strip extras "4428 Elmhurst DrivePlano, TX 75093-3257 4 bd 3 ba 3,067 sqft MLS #14597644"
-        value = value.replace(/(TX [0-9\-]{5,10}).*/i, "$1");
+            if (extract.Expected)
+                goodListingType = (value == extract.Expected);
+        }
 
-        //Fix missing space before city: "790 Manchester AvenueProsper, TX 75078-1447"
-        value = value.replace(/([A-Z]{1}[a-z]+)([A-Z]{1}[A-Za-z]+)(, TX)/, "$1, $2$3");
+        return goodListingType;
+    },
 
-        value = value.trim();
+    onJPathAddress: function(siteSetting, addresses, value, jElement) {
+        if (SiteExtractor.checkListingType(siteSetting, addresses, jElement)) {
 
-        if (value.match(/^ *$/) == null &&
-            value.match(/.*, TX.*/) != null &&
-            !addresses.map(e => e.Address).includes(value) &&
-            //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
-            (!excludePrevious || !previousAddresses.find(a => a.indexOf(value.split(' ').slice(0, 2).join(' ')) >= 0)))
-            return value;
-        else
-            return null;
+            let excludePrevious = siteSetting.ExcludePrevious;
+
+            value = SiteExtractor.splitDot(value)[0];
+
+            value = value.replace(/ Bed$/i, "");
+            value = value.replace(/\s{2,}/i, " ");
+
+            //Strip extras "4428 Elmhurst DrivePlano, TX 75093-3257 4 bd 3 ba 3,067 sqft MLS #14597644"
+            value = value.replace(/(TX [0-9\-]{5,10}).*/i, "$1");
+
+            //Fix missing space before city: "790 Manchester AvenueProsper, TX 75078-1447"
+            value = value.replace(/([A-Z]{1}[a-z]+)([A-Z]{1}[A-Za-z]+)(, TX)/, "$1, $2$3");
+
+            value = value.trim();
+
+            if (value.match(/^ *$/) == null &&
+                value.match(/.*, TX.*/) != null &&
+                !addresses.map(e => e.Address).includes(value) &&
+                //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
+                (!excludePrevious || !previousAddresses.find(a => a.indexOf(value.split(' ').slice(0, 2).join(' ')) >= 0)))
+                return value;
+            else
+                return null;
+        }
     },
 
     getAddress: function() {
