@@ -7,6 +7,7 @@
 // document.getElementsByTagName('head')[0].appendChild(jq);
 
 const SiteExtractor = {
+    beVerbose: true,
     mainProp: "Address",
     siteSettings: {
         //https://www.redfin.com/city/30868/TX/Plano/filter/property-type=house,max-price=650k,min-beds=3,min-baths=2,min-year-built=1990,min-lot-size=0.25-acre,include=forsale+mlsfsbo+construction+fsbo+foreclosed,viewport=33.47482:32.6288:-95.97419:-97.62625
@@ -204,32 +205,51 @@ const SiteExtractor = {
     },
 
     onJPathAddress: function(siteSetting, addresses, value, jElement) {
-        if (SiteExtractor.checkListingType(siteSetting, addresses, jElement)) {
+        let excludePrevious = siteSetting.ExcludePrevious;
 
-            let excludePrevious = siteSetting.ExcludePrevious;
+        value = SiteExtractor.splitDot(value)[0];
 
-            value = SiteExtractor.splitDot(value)[0];
+        value = value.replace(/ Bed$/i, "");
+        value = value.replace(/\s{2,}/i, " ");
 
-            value = value.replace(/ Bed$/i, "");
-            value = value.replace(/\s{2,}/i, " ");
+        //Strip extras "4428 Elmhurst DrivePlano, TX 75093-3257 4 bd 3 ba 3,067 sqft MLS #14597644"
+        value = value.replace(/(TX [0-9\-]{5,10}).*/i, "$1");
 
-            //Strip extras "4428 Elmhurst DrivePlano, TX 75093-3257 4 bd 3 ba 3,067 sqft MLS #14597644"
-            value = value.replace(/(TX [0-9\-]{5,10}).*/i, "$1");
+        //Fix missing space before city: "790 Manchester AvenueProsper, TX 75078-1447"
+        value = value.replace(/([A-Z]{1}[a-z]+)([A-Z]{1}[A-Za-z]+)(, TX)/, "$1, $2$3");
 
-            //Fix missing space before city: "790 Manchester AvenueProsper, TX 75078-1447"
-            value = value.replace(/([A-Z]{1}[a-z]+)([A-Z]{1}[A-Za-z]+)(, TX)/, "$1, $2$3");
+        value = value.trim();
 
-            value = value.trim();
+        if (!SiteExtractor.checkListingType(siteSetting, addresses, jElement)) {
+            if (SiteExtractor.beVerbose)
+                console.log("Address Check Failure - Wrong Listing Type:" + value);
 
-            if (value.match(/^ *$/) == null &&
-                value.match(/.*, TX.*/) != null &&
-                !addresses.map(e => e.Address).includes(value) &&
-                //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
-                (!excludePrevious || !previousAddresses.find(a => a.indexOf(value.split(' ').slice(0, 2).join(' ')) >= 0)))
-                return value;
-            else
-                return null;
+            value = null;
+        } else if (value.match(/^ *$/) != null) {
+            if (SiteExtractor.beVerbose)
+                console.log("Address Check Failure - Empty:" + value);
+
+            value = null;
+        } else if (value.match(/.*, TX.*/) == null) {
+            if (SiteExtractor.beVerbose)
+                console.log("Address Check Failure - Not in TX:" + value);
+
+            value = null;
+        } else if (addresses.map(e => e.Address).includes(value)) {
+            if (SiteExtractor.beVerbose)
+                console.log("Address Check Failure - Address already in the list:" + value);
+
+            value = null;
+
+        } else if (excludePrevious && previousAddresses.find(a => a.indexOf(value.split(' ').slice(0, 2).join(' ')) >= 0)) {
+            //Address "12685 Burnt Prairie Lane, Frisco, TX 75035-5168" vs "12685 Burnt Prairie Ln Frisco, TX 750354"
+            if (SiteExtractor.beVerbose)
+                console.log("Address Check Failure - Address already in the previous list:" + value);
+
+            value = null;
         }
+
+        return value;
     },
 
     getAddress: function() {
