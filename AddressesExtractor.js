@@ -45,7 +45,7 @@ const SiteExtractor = {
                 Status: { Value: "New" },
                 Price: { Siblings: "p.price" },
                 Link: { Closest: "div.property-container", Find: "a", Attr: "href" },
-                ListingType: { Closest: "div.callout-container", Expected: "New Listing" },
+                ListingType: { Closest: "div.property-container", Find: "div.callout-container", Expected: "New Listing" },
 
                 //address
                 Year: { Path: 'dt.label:contains("Year Built")', Siblings: 'dd.detail' },
@@ -112,8 +112,12 @@ const SiteExtractor = {
         if (!value) {
             if (extract.Path && prop != SiteExtractor.mainProp)
                 relativeElem = $(extract.Path);
+
+            //The .closest selector traverses up the DOM to find the parent that matches the conditions.
             if (extract.Closest)
                 relativeElem = relativeElem.closest(extract.Closest);
+
+            //The .find selector traverses down the DOM where the event occurred, that matches the conditions.
             if (extract.Find)
                 relativeElem = relativeElem.find(extract.Find);
             if (extract.Siblings)
