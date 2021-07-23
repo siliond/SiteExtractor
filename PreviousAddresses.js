@@ -1,4 +1,7 @@
 const previousAddresses = [
+    //portal.onehome.com_2021-07-08
+    "2404 Lakepoint Drive, Keller, TX 76248-8403",
+
     //cannonteamhomes.com_2021-07-04
     "520 Smoke Tree Dr Murphy, TX 750944", "435 Dakota Dr Murphy, TX 750944",
 

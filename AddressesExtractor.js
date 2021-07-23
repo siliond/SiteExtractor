@@ -7,6 +7,7 @@
 // document.getElementsByTagName('head')[0].appendChild(jq);
 
 const SiteExtractor = {
+    mainProp: "Address",
     siteSettings: {
         //https://www.redfin.com/city/30868/TX/Plano/filter/property-type=house,max-price=650k,min-beds=3,min-baths=2,min-year-built=1990,min-lot-size=0.25-acre,include=forsale+mlsfsbo+construction+fsbo+foreclosed,viewport=33.47482:32.6288:-95.97419:-97.62625
         "www.redfin.com": { "Path": "div.link-and-anchor", "ExcludePrevious": true },
@@ -103,7 +104,7 @@ const SiteExtractor = {
         if (!value) {
             let relativeElem = elem;
 
-            if (extract.Path)
+            if (extract.Path && prop != SiteExtractor.mainProp)
                 relativeElem = $(extract.Path);
             if (extract.Closest)
                 relativeElem = relativeElem.closest(extract.Closest);
