@@ -185,8 +185,10 @@ const SiteExtractor = {
 
     checkListingType: function(siteSetting, addresses, jElement) {
         let goodListingType = true;
+        let prop = "ListingType";
 
-        let value = SiteExtractor.jPathDrill(siteSetting, addresses, jElement, "ListingType");
+
+        let value = SiteExtractor.jPathDrill(siteSetting, addresses, jElement, prop);
 
         if (value) {
             let extract = SiteExtractor.getPropExtract(siteSetting, prop);
