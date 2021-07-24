@@ -22,6 +22,10 @@ const SiteExtractor = {
                 Status: { Value: "New" },
                 Price: { Closest: "div[data-testid='home-card-sale']", Find: "div[data-testid='property-price']" },
                 Link: { Attr: "href" },
+                Image: { Value = '=IMAGE(GetMapImageURL("${Address}"))' },
+                MapLink: { Value = '=hyperlink(CONCATENATE("https://www.google.com/maps/search/?api=1&query=${Address}"))' },
+
+
                 ListingType: {},
 
                 //address
@@ -129,8 +133,12 @@ const SiteExtractor = {
             value;
         let relativeElem = elem;
 
-        if (extract.Value)
+        if (extract.Value) {
             value = extract.Value;
+
+            if (value)
+                value = value.replace('${Address}', addresses.Address[addresses.Address.length - 1]);
+        }
 
         if (extract.Attr)
             value = elem.attr(extract.Attr);
