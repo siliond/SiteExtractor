@@ -1,5 +1,8 @@
 const previousAddresses = [
 
+    //portal.onehome.com_2021-07-24
+    "14026 Tanglewood CourtFarmers Branch, TX 75234-3840", "6713 Creek Bend, Rowlett, TX 75089-4520",
+
     //portal.onehome.com_2021-07-23
     "19 Preakness Place RoadVan Alstyne, TX 75495-4800", "1001 Creek Bend, Carrollton, TX 75007-2787", "5101 Sweetgum Court, McKinney, TX 75071-8217",
 
