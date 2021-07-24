@@ -74,7 +74,10 @@ const SiteExtractor = {
     },
 
     pageLog: function(text, color = "red") {
-        $('body').prepend(`<h3 style="color:${color};">${text}</h3>`).scrollIntoView();
+        let headerMessage = $('body').prepend(`<h3 style="color:${color};">${text}</h3>`);
+
+        if (headerMessage && headerMessage.scrollIntoView)
+            headerMessage.scrollIntoView();
     },
 
     getAbsolutePath: function(base, relative, useHostOnly = true) {
