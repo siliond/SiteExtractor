@@ -79,7 +79,7 @@ const SiteExtractor = {
         var stack = base.split(separator),
             parts = relative.split(separator);
         if (useHostOnly)
-            stack = [stack[0]];
+            stack = stack.slice(0, 3);
         else
             stack.pop(); // remove current file name (or empty string)
         // (omit if "base" is the current folder without trailing slash)
@@ -91,6 +91,7 @@ const SiteExtractor = {
             else
                 stack.push(parts[i]);
         }
+
         return stack.join("/");
     },
 
@@ -147,7 +148,7 @@ const SiteExtractor = {
 
     onJPathLink: function(siteSetting, addresses, value, jElement) {
         if (value)
-            value = SiteExtractor.getAbsolutePath(window.location.host, value);
+            value = SiteExtractor.getAbsolutePath(window.location.href, value);
 
         return value;
     },
