@@ -1,4 +1,17 @@
 const previousAddresses = [
+
+    //www.trulia.com_2021-07-24
+    "1003 Winchester Dr, Forney, TX", "1006 Holmes Ct, Allen, TX", "1029 Redwood Trl, Rockwall, TX", "161 Kirkhaven Dr, Rockwall, TX", "1040 Edgefield Ln, Forney, TX", "3000 Preston Club Dr, Sherman, TX", "1008 Hummingbird Ct, Forney, TX", "1717 Nicklaus Ct, Mckinney, TX", "2 Secluded Pond Cv, Princeton, TX", "1321 Canary Ln, Forney, TX",
+
+    //www.trulia.com_2021-07-24
+    "1627 Lake Travis Dr, Allen, TX", "416 Arbor Hills TrlBlue Ridge, TX", "3221 Wimberley Ln, Rockwall, TX", "1304 Stork Way, Forney, TX", "1421 Cedar Creek Dr, Anna, TX", "1157 Stonebridge Pass, Gunter, TX", "1115 Carson Dr, Allen, TX", "1401 Siena Ln, Rockwall, TX", "1411 Montebello Dr, Prosper, TX",
+
+    //www.trulia.com_2021-07-24
+    "17798 Sonesh, Nevada, TX", "1015 Everglades Dr, Allen, TX", "1319 Middleton Dr, Rockwall, TX", "4108 Oakhill Ct, Mckinney, TX", "901 Grapevine Ct, Prosper, TX", "312 Navajo TrlLake Kiowa, TX", "4033 Oyster Creek Ct, Prosper, TX", "1917 Baltimore Dr, Allen, TX",
+
+    //www.trulia.com_2021-07-24
+    "707 Wallace Rd, Gunter, TX", "14800 Tradewinds Cir, Forney, TX", "5074 E FM 552Royse City, TX", "104 Shoshone Cv, Gainesville, TX", "10933 Helms Trl, Forney, TX",
+
     //cannonteamhomes.com_2021-07-24
     "832 Mallard Trl Murphy, TX 750944", "1141 Cedar Springs Dr Prosper, TX 750784", "2834 Spring Creek Trl Celina, TX 750786", "921 Coral Ridge Ct Prosper, TX 750783", "2034 Saint Ives Dr Allen, TX 750134", "902 Autumn Ct Mc, Kinney, TX 750724", "1536 Vista Bend Dr Allen, TX 750024", "6003 Rathbone Dr Allen, TX 750023", "2101 Ironside Dr Plano, TX 750754", "718 Kinston Ct Wylie, TX 750984", "633 Creek View Dr Prosper, TX 750784",
 
