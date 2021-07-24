@@ -36,11 +36,11 @@ const SiteExtractor = {
                 ListingType: {},
 
                 //address
-                Year: { Path: 'span.header:contains("Year Built")', Siblings: 'span.content' },
-                Bedrooms: { Path: 'small:contains("Bed")', Siblings: 'h4.no-margin' },
-                Bathrooms: { Path: 'small:contains("Bath")', Siblings: 'h4.no-margin' },
-                SqFeet: { Path: 'small:contains("SqFt")', Siblings: 'h4.no-margin' },
-                Lot: { Path: 'span.header:contains("Lot/Acreage")', Siblings: 'span.content' }
+                Year: { Path: 'div.contains("Year Built")', Siblings: 'div' },
+                Bedrooms: { Path: 'div:contains(" Beds")' },
+                Bathrooms: { Path: 'div:contains(" Baths")' },
+                SqFeet: { Path: 'div:contains(" sqft")' },
+                Lot: { Path: 'span:contains("Lot Size: ")' }
             }
         },
 
