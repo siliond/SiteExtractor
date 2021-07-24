@@ -36,7 +36,7 @@ const SiteExtractor = {
                 ListingType: {},
 
                 //address
-                Year: { Path: 'div.contains("Year Built")', Siblings: 'div' },
+                Year: { Path: 'div:contains("Year Built")', Siblings: 'div' },
                 Bedrooms: { Path: 'div:contains(" Beds")' },
                 Bathrooms: { Path: 'div:contains(" Baths")' },
                 SqFeet: { Path: 'div:contains(" sqft")' },
