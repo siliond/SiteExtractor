@@ -128,7 +128,7 @@ const SiteExtractor = {
         return extract;
     },
 
-    jPathDrill: function(siteSetting, addresses, elem, prop) {
+    jPathDrill: function(siteSetting, addresses, element, elem, prop) {
         let extract = SiteExtractor.getPropExtract(siteSetting, prop),
             value;
         let relativeElem = elem;
@@ -136,8 +136,8 @@ const SiteExtractor = {
         if (extract.Value) {
             value = extract.Value;
 
-            if (value && addresses && addresses.Address)
-                value = value.replace('${Address}', addresses.Address[addresses.Address.length - 1]);
+            if (value && element && element[SiteExtractor.mainProp])
+                value = value.replace('${' + SiteExtractor.mainProp + '}', element[SiteExtractor.mainProp]);
         }
 
         if (extract.Attr)
@@ -227,7 +227,7 @@ const SiteExtractor = {
         let prop = "ListingType";
 
 
-        let value = SiteExtractor.jPathDrill(siteSetting, addresses, jElement, prop);
+        let value = SiteExtractor.jPathDrill(siteSetting, addresses, null, jElement, prop);
 
         if (value) {
             let extract = SiteExtractor.getPropExtract(siteSetting, prop);
@@ -308,7 +308,7 @@ const SiteExtractor = {
         for (let i = 0; i < elementProps.length; i++) {
             const prop = elementProps[i];
 
-            element[prop] = SiteExtractor.jPathDrill(siteSetting, elements, jElement, prop);
+            element[prop] = SiteExtractor.jPathDrill(siteSetting, elements, element, jElement, prop);
 
             if (i == 0 && !element[prop]) {
                 element = null;
