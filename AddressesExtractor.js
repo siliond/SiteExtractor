@@ -136,7 +136,7 @@ const SiteExtractor = {
         if (extract.Value) {
             value = extract.Value;
 
-            if (value)
+            if (value && addresses && addresses.Address)
                 value = value.replace('${Address}', addresses.Address[addresses.Address.length - 1]);
         }
 
