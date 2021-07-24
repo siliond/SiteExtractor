@@ -1,4 +1,6 @@
 const previousAddresses = [
+    //cannonteamhomes.com_2021-07-24
+    "832 Mallard Trl Murphy, TX 750944", "1141 Cedar Springs Dr Prosper, TX 750784", "2834 Spring Creek Trl Celina, TX 750786", "921 Coral Ridge Ct Prosper, TX 750783", "2034 Saint Ives Dr Allen, TX 750134", "902 Autumn Ct Mc, Kinney, TX 750724", "1536 Vista Bend Dr Allen, TX 750024", "6003 Rathbone Dr Allen, TX 750023", "2101 Ironside Dr Plano, TX 750754", "718 Kinston Ct Wylie, TX 750984", "633 Creek View Dr Prosper, TX 750784",
 
     //portal.onehome.com_2021-07-24
     "14026 Tanglewood CourtFarmers Branch, TX 75234-3840", "6713 Creek Bend, Rowlett, TX 75089-4520",
