@@ -27,6 +27,7 @@ const SiteExtractor = {
                 Status: { Value: "New" },
                 Price: { Siblings: "h2" },
                 Link: { Closest: "a", Attr: "href" },
+                ListingType: {},
 
                 //address
                 Year: { Path: 'span.header:contains("Year Built")', Siblings: 'span.content' },
