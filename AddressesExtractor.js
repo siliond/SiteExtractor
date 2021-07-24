@@ -10,6 +10,16 @@ const SiteExtractor = {
     beVerbose: true,
     mainProp: "Address",
     siteSettings: {
+        "Global": {
+            "Paths": {
+                //addresses
+                Image: { Value: '=IMAGE(GetMapImageURL(""${Address}""))' },
+                MapLink: { Value: '=hyperlink(CONCATENATE(""https://www.google.com/maps/search/?api=1&query=${Address}""))' },
+
+                ListingType: {}
+            }
+        },
+
         //https://www.redfin.com/city/30868/TX/Plano/filter/property-type=house,max-price=650k,min-beds=3,min-baths=2,min-year-built=1990,min-lot-size=0.25-acre,include=forsale+mlsfsbo+construction+fsbo+foreclosed,viewport=33.47482:32.6288:-95.97419:-97.62625
         "www.redfin.com": { "Path": "div.link-and-anchor", "ExcludePrevious": true },
 
@@ -22,9 +32,6 @@ const SiteExtractor = {
                 Status: { Value: "New" },
                 Price: { Closest: "div[data-testid='home-card-sale']", Find: "div[data-testid='property-price']" },
                 Link: { Attr: "href" },
-                Image: { Value: '=IMAGE(GetMapImageURL(""${Address}""))' },
-                MapLink: { Value: '=hyperlink(CONCATENATE(""https://www.google.com/maps/search/?api=1&query=${Address}""))' },
-
 
                 ListingType: {},
 
@@ -123,7 +130,11 @@ const SiteExtractor = {
     getPropExtract: function(siteSetting, prop) {
         let jPaths = siteSetting.Paths;
 
-        let extract = jPaths[prop];
+        let extract;
+        if (jPaths[prop])
+            extract = jPaths[prop];
+        else
+            extract = SiteExtractor.siteSettings.Paths.Global.Paths[prop];
 
         return extract;
     },
