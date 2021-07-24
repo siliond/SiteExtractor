@@ -73,12 +73,15 @@ const SiteExtractor = {
         $('body').prepend(`<h3 style="color:${color};">${text}</h3>`).scrollIntoView();
     },
 
-    getAbsolutePath: function(base, relative) {
+    getAbsolutePath: function(base, relative, useHostOnly = true) {
         const separator = "/";
 
         var stack = base.split(separator),
             parts = relative.split(separator);
-        stack.pop(); // remove current file name (or empty string)
+        if (useHostOnly)
+            stack = [stack[0]];
+        else
+            stack.pop(); // remove current file name (or empty string)
         // (omit if "base" is the current folder without trailing slash)
         for (var i = 0; i < parts.length; i++) {
             if (!parts[i] || parts[i] == ".")
@@ -144,7 +147,7 @@ const SiteExtractor = {
 
     onJPathLink: function(siteSetting, addresses, value, jElement) {
         if (value)
-            value = SiteExtractor.getAbsolutePath(window.location.href, value);
+            value = SiteExtractor.getAbsolutePath(window.location.host, value);
 
         return value;
     },
