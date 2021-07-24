@@ -14,7 +14,24 @@ const SiteExtractor = {
         "www.redfin.com": { "Path": "div.link-and-anchor", "ExcludePrevious": true },
 
         //https://www.trulia.com/for_sale/32.8198,33.30782,-96.91955,-96.54632_xy/3p_beds/2p_baths/0-650000_price/2500p_sqft/price;a_sort/0.25p_ls/2000p_built/accepting_offers,coming_soon,foreclosure,fsbo,new_homes,resale_lt/
-        "www.trulia.com": { "Path": "a[data-testid='property-card-link']", "ExcludePrevious": true },
+        "www.trulia.com": {
+            "ExcludePrevious": true,
+            "Paths": {
+                //addresses
+                Address: { Path: "a[data-testid='property-card-link']" },
+                Status: { Value: "New" },
+                Price: { Closest: "div[data-testid='home-card-sale']", Find: "div[data-testid='property-price']" },
+                Link: { Attr: "href" },
+                ListingType: {},
+
+                //address
+                Year: { Path: 'span.header:contains("Year Built")', Siblings: 'span.content' },
+                Bedrooms: { Path: 'small:contains("Bed")', Siblings: 'h4.no-margin' },
+                Bathrooms: { Path: 'small:contains("Bath")', Siblings: 'h4.no-margin' },
+                SqFeet: { Path: 'small:contains("SqFt")', Siblings: 'h4.no-margin' },
+                Lot: { Path: 'span.header:contains("Lot/Acreage")', Siblings: 'span.content' }
+            }
+        },
 
         //https://www.realtor.com/realestateandhomes-search/Plano_TX/beds-3/baths-2/type-single-family-home/price-na-650000/sqft-2500/lot-sqft-10890/age-25/pnd-hide?view=map&pos=33.549135,-97.395747,32.570845,-96.077388,10&points=xlelQa_vjEfaK%3FfaKpjBfsDkMhvIo_AdwB%3FpuEzmAnr%40hx%40flAr%60EflA%60uAflAnnCbP%3FztAxqBxtA%7C%7CC%7CwF~vGbPpeH%60bD~%7BJvXtcB%7CwF~b%40ngJ%60rBzwFrTflA%7CfA%7Ci%40%7CfA%3Fx_Am%7DAvoEsqGniGeeIx_AcwBfnAkhCx%5B%7BpCt%7CAgaKfj%40e~Ez_A%7DaOtx%40u_Nz%5BquE~b%40aiGfFy%7BDoq%40ewB%7DgCmdEaxGwXgrB%3F_gJia%40k%7DC%3FavC%60%7B%40ucB%3FciGor%40wnC%3FscBja%40_nA%3Fox%40or%40yuCrjDemJja%40yqB%7BtAoyQvXyb%40l%7DAiMePbF
         "www.realtor.com": { "Path": "div.srp-page-address", "ExcludePrevious": true },
@@ -34,9 +51,6 @@ const SiteExtractor = {
                 Bedrooms: { Path: 'small:contains("Bed")', Siblings: 'h4.no-margin' },
                 Bathrooms: { Path: 'small:contains("Bath")', Siblings: 'h4.no-margin' },
                 SqFeet: { Path: 'small:contains("SqFt")', Siblings: 'h4.no-margin' },
-                // Bedrooms: { Path: 'input[id="hbeds"]', Attr: "value" },
-                // Bathrooms: { Path: 'input[id="hbaths"]', Attr: "value" },
-                // SqFeet: { Path: 'input[id="hsqfeet"]', Attr: "value" },
                 Lot: { Path: 'span.header:contains("Lot/Acreage")', Siblings: 'span.content' }
             },
             "ExcludePrevious": true
