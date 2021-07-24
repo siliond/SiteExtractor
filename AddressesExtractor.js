@@ -297,7 +297,7 @@ const SiteExtractor = {
     },
 
     getAddresses: function() {
-        let addressProps = ["Address", "Status", "Price", "Link"];
+        let addressProps = ["Address", "Status", "Price", "Link", "Image", "MapLink"];
 
         return this.getElements(addressProps);
     },
