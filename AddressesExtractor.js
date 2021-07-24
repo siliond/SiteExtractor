@@ -33,7 +33,10 @@ const SiteExtractor = {
                 Year: { Path: 'span.header:contains("Year Built")', Siblings: 'span.content' },
                 Bedrooms: { Path: 'small:contains("Bed")', Siblings: 'h4.no-margin' },
                 Bathrooms: { Path: 'small:contains("Bath")', Siblings: 'h4.no-margin' },
-                SqFeet: { Path: 'small:contains("SqFt")' },
+                SqFeet: { Path: 'small:contains("SqFt")', Siblings: 'h4.no-margin' },
+                // Bedrooms: { Path: 'input[id="hbeds"]', Attr: "value" },
+                // Bathrooms: { Path: 'input[id="hbaths"]', Attr: "value" },
+                // SqFeet: { Path: 'input[id="hsqfeet"]', Attr: "value" },
                 Lot: { Path: 'span.header:contains("Lot/Acreage")', Siblings: 'span.content' }
             },
             "ExcludePrevious": true
@@ -51,9 +54,9 @@ const SiteExtractor = {
 
                 //address
                 Year: { Path: 'dt.label:contains("Year Built")', Siblings: 'dd.detail' },
-                Bedrooms: { Path: 'input[id="hbeds"]', Attr: "value" },
-                Bathrooms: { Path: 'input[id="hbaths"]', Attr: "value" },
-                SqFeet: { Path: 'input[id="hsqfeet"]', Attr: "value" },
+                Bedrooms: { Path: 'span[data-qa="beds"]' },
+                Bathrooms: { Path: 'span[data-qa="baths"]' },
+                SqFeet: { Path: 'span[data-qa="sqft"]' },
                 Lot: { Path: 'dt.label:contains("Lot Size Area:")', Siblings: 'dd.detail' }
             },
             "ExcludePrevious": true
