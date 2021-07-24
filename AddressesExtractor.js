@@ -238,17 +238,17 @@ const SiteExtractor = {
 
         if (!SiteExtractor.checkListingType(siteSetting, addresses, jElement)) {
             if (SiteExtractor.beVerbose)
-                console.log("Address Check Failure - Wrong Listing Type:" + value);
+                console.log("Address Check Failure - Wrong Listing Type: " + value);
 
             value = null;
         } else if (value.match(/^ *$/) != null) {
             if (SiteExtractor.beVerbose)
-                console.log("Address Check Failure - Empty:" + value);
+                console.log("Address Check Failure - Empty: " + value);
 
             value = null;
         } else if (value.match(/.*, TX.*/) == null) {
             if (SiteExtractor.beVerbose)
-                console.log("Address Check Failure - Not in TX:" + value);
+                console.log("Address Check Failure - Not in TX: " + value);
 
             value = null;
         } else if (addresses.map(e => e.Address).includes(value)) {
