@@ -53,7 +53,7 @@ const SiteExtractor = {
                 Year: { Path: 'dt.label:contains("Year Built")', Siblings: 'dd.detail' },
                 Bedrooms: { Path: 'input[id="hbeds"]', Attr: "value" },
                 Bathrooms: { Path: 'input[id="hbaths"]', Attr: "value" },
-                SqFeet: { Path: 'input[id="hsqfeet"]' },
+                SqFeet: { Path: 'input[id="hsqfeet"]', Attr: "value" },
                 Lot: { Path: 'dt.label:contains("Lot Size Area:")', Siblings: 'dd.detail' }
             },
             "ExcludePrevious": true
