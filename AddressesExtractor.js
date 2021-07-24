@@ -22,8 +22,8 @@ const SiteExtractor = {
                 Status: { Value: "New" },
                 Price: { Closest: "div[data-testid='home-card-sale']", Find: "div[data-testid='property-price']" },
                 Link: { Attr: "href" },
-                Image: { Value: '=IMAGE(GetMapImageURL("${Address}"))' },
-                MapLink: { Value: '=hyperlink(CONCATENATE("https://www.google.com/maps/search/?api=1&query=${Address}"))' },
+                Image: { Value: '=IMAGE(GetMapImageURL(""${Address}""))' },
+                MapLink: { Value: '=hyperlink(CONCATENATE(""https://www.google.com/maps/search/?api=1&query=${Address}""))' },
 
 
                 ListingType: {},
