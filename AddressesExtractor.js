@@ -238,7 +238,7 @@ const SiteExtractor = {
     },
 
     toNumber: function(value) {
-        value = parseFloat(value.replace(/,/g, ''));
+        value = parseFloat(value.trim().replace(/,/g, ''));
 
         return value;
     },
