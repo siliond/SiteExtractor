@@ -36,7 +36,7 @@ const SiteExtractor = {
                 ListingType: {},
 
                 //address
-                Year: { Path: 'div:contains("Year Built")', Siblings: 'div' },
+                Year: { Path: 'div[data-testid="features-container"]', Find: 'div:contains("Year Built"):not(:has(:contains("Year Built")))', Siblings: 'div' },
                 Bedrooms: { Path: 'div:contains(" Beds")' },
                 Bathrooms: { Path: 'div:contains(" Baths")' },
                 SqFeet: { Path: 'div:contains(" sqft")' },
@@ -134,7 +134,7 @@ const SiteExtractor = {
         if (jPaths[prop])
             extract = jPaths[prop];
         else
-            extract = SiteExtractor.siteSettings.Paths.Global.Paths[prop];
+            extract = SiteExtractor.siteSettings.Global.Paths[prop];
 
         return extract;
     },
@@ -163,8 +163,12 @@ const SiteExtractor = {
                 relativeElem = relativeElem.closest(extract.Closest);
 
             //The .find selector traverses down the DOM where the event occurred, that matches the conditions.
-            if (extract.Find)
+            if (extract.Find) {
                 relativeElem = relativeElem.find(extract.Find);
+
+                if (Array.isArray(relativeElem))
+                    relativeElem = relativeElem[0];
+            }
             if (extract.Siblings)
                 relativeElem = relativeElem.siblings(extract.Siblings);
 
