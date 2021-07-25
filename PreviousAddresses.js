@@ -1,4 +1,7 @@
 const previousAddresses = [
+    //www.dfwrealestate.com_2021-07-25
+    "402 Highland Boulevard Oak Point, TX 75068", "7900 Stone Ridge Drive Northlake, TX 76247", "1812 Waddill Street Mc, Kinney, TX 75069", "101 Petes Lane Ponder, TX 76259", "109 College Street Farmersville, TX 75442",
+
     //portal.onehome.com_2021-07-25
     "1200 Wills Point Drive, Allen, TX 75013-8516", "1001 Fox Hill CourtCopper Canyon, TX 75077-8556",
 

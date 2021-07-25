@@ -30,11 +30,11 @@ const SiteExtractor = {
                 Link: { Closest: "div.Listingcard__detail", Find: "a", Attr: "href" },
 
                 //address
-                Year: { Path: 'dt.label:contains("Year Built")', Siblings: 'dd.detail' },
-                Bedrooms: { Path: 'span[data-qa="beds"]' },
-                Bathrooms: { Path: 'span[data-qa="baths"]' },
-                SqFeet: { Path: 'span[data-qa="sqft"]' },
-                Lot: { Path: 'dt.label:contains("Lot Size Area:")', Siblings: 'dd.detail' }
+                Year: { Path: 'strong.title:contains("Year Built")', Siblings: 'span.value' },
+                Bedrooms: { Path: 'span[id="bedsTotal"]' },
+                Bathrooms: { Path: 'strong.title:contains("Baths")', Find: 'span.value' },
+                SqFeet: { Path: 'strong.title:contains("Living Area")', Find: 'span.value' },
+                Lot: { Path: 'strong.title:contains("Acreage")', Find: 'span.value' }
             },
             "ExcludePrevious": true
         },
