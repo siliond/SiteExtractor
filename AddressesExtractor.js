@@ -32,9 +32,9 @@ const SiteExtractor = {
                 //address
                 Year: { Path: 'strong.title:contains("Year Built")', Siblings: 'span.value' },
                 Bedrooms: { Path: 'span[id="bedsTotal"]' },
-                Bathrooms: { Path: 'strong.title:contains("Baths")', Find: 'span.value' },
-                SqFeet: { Path: 'strong.title:contains("Living Area")', Find: 'span.value' },
-                Lot: { Path: 'strong.title:contains("Acreage")', Find: 'span.value' }
+                Bathrooms: { Path: 'strong.title:contains("Baths"):contains("Total")', Find: 'span.value' },
+                SqFeet: { Path: 'strong.title:contains("Living Area")', Siblings: 'span.value' },
+                Lot: { Path: 'strong.title:contains("Acreage")', Siblings: 'span.value' }
             },
             "ExcludePrevious": true
         },
