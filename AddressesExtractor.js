@@ -217,6 +217,10 @@ const SiteExtractor = {
         return value;
     },
 
+    onJPathPrice: function(siteSetting, addresses, value, jElement) {
+        return value.trim();
+    },
+
     onJPathYear: function(siteSetting, addresses, value, jElement) {
         return SiteExtractor.toNumber(value);
     },
@@ -238,7 +242,7 @@ const SiteExtractor = {
     },
 
     toNumber: function(value) {
-        value = parseFloat(value.trim().replace(/,/g, ''));
+        value = parseFloat(value.replace(/,/g, ''));
 
         return value;
     },
