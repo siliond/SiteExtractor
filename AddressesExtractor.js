@@ -288,7 +288,7 @@ const SiteExtractor = {
 
         value = value.replace(/ Bed$/i, "");
         value = value.replace(/\n/gi, " ");
-        value = value.replace(/\s{2,}/i, " ");
+        value = value.replace(/\s{2,}/gi, " ");
 
         //Strip extras "4428 Elmhurst DrivePlano, TX 75093-3257 4 bd 3 ba 3,067 sqft MLS #14597644"
         value = value.replace(/(TX [0-9\-]{5,10}).*/i, "$1");
