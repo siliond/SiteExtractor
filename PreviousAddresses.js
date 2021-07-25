@@ -1,4 +1,6 @@
 const previousAddresses = [
+    //portal.onehome.com_2021-07-25
+    "1200 Wills Point Drive, Allen, TX 75013-8516", "1001 Fox Hill CourtCopper Canyon, TX 75077-8556",
 
     //www.trulia.com_2021-07-24
     "1003 Winchester Dr, Forney, TX", "1006 Holmes Ct, Allen, TX", "1029 Redwood Trl, Rockwall, TX", "161 Kirkhaven Dr, Rockwall, TX", "1040 Edgefield Ln, Forney, TX", "3000 Preston Club Dr, Sherman, TX", "1008 Hummingbird Ct, Forney, TX", "1717 Nicklaus Ct, Mckinney, TX", "2 Secluded Pond Cv, Princeton, TX", "1321 Canary Ln, Forney, TX",

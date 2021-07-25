@@ -20,6 +20,26 @@ const SiteExtractor = {
             }
         },
 
+        //https://www.dfwrealestate.com/search?sortOption=created%20desc&mapChanged=0&defaultPhoto=Default&_keywordsAll=cnty_collin%2Ccnty_denton&class=Residential&ListPriceMin=450%2C000&ListPriceMax=650%2C000&BedsTotalMin=3&LivingAreaMin=3100&LotSizeAreaMin=.26&ListDateRelDategte=0&MLSStatusIn=Active
+        "www.dfwrealestate.com": {
+            "Paths": {
+                //addresses
+                Address: { Path: "p.Listingcard__address" },
+                Status: { Value: "New" },
+                Price: { Closest: "div.Listingcard__detail", Find: "h3.Listingcard__price" },
+                Link: { Closest: "div.Listingcard__detail", Find: "a", Attr: "href" },
+
+                //address
+                Year: { Path: 'dt.label:contains("Year Built")', Siblings: 'dd.detail' },
+                Bedrooms: { Path: 'span[data-qa="beds"]' },
+                Bathrooms: { Path: 'span[data-qa="baths"]' },
+                SqFeet: { Path: 'span[data-qa="sqft"]' },
+                Lot: { Path: 'dt.label:contains("Lot Size Area:")', Siblings: 'dd.detail' }
+            },
+            "ExcludePrevious": true
+        },
+
+
         //https://www.redfin.com/city/30868/TX/Plano/filter/property-type=house,max-price=650k,min-beds=3,min-baths=2,min-year-built=1990,min-lot-size=0.25-acre,include=forsale+mlsfsbo+construction+fsbo+foreclosed,viewport=33.47482:32.6288:-95.97419:-97.62625
         "www.redfin.com": { "Path": "div.link-and-anchor", "ExcludePrevious": true },
 
