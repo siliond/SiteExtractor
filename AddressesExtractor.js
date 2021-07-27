@@ -7,16 +7,16 @@
 // document.getElementsByTagName('head')[0].appendChild(jq);
 
 const SiteExtractor = {
-    startRowIndex: 2,
+    currentRowIndex: 2,
     beVerbose: true,
     mainProp: "Address",
     siteSettings: {
         "Global": {
             "Paths": {
                 //addresses
-                MapDuration: { Value: '=GetMapDuration(${CellCoordinates},General!B1)' },
-                Image: { Value: '=IMAGE(GetMapImageURL(${CellCoordinates}))' },
-                MapLink: { Value: '=hyperlink(CONCATENATE(""https://www.google.com/maps/search/?api=1&query="", ${CellCoordinates}))' },
+                MapDuration: { Value: '=GetMapDuration(${AddressCellCoordinates},General!B1)' },
+                Image: { Value: '=IMAGE(GetMapImageURL(${AddressCellCoordinates}))' },
+                MapLink: { Value: '=hyperlink(CONCATENATE(""https://www.google.com/maps/search/?api=1&query="", ${AddressCellCoordinates}))' },
 
                 ListingType: {}
             }
@@ -161,6 +161,10 @@ const SiteExtractor = {
         return extract;
     },
 
+    getAddressCellCoordinates: function() {
+        return "A" + SiteExtractor.currentRowIndex.toString();
+    },
+
     jPathDrill: function(siteSetting, addresses, element, elem, prop) {
         let extract = SiteExtractor.getPropExtract(siteSetting, prop),
             value;
@@ -171,6 +175,9 @@ const SiteExtractor = {
 
             if (value && element && element[SiteExtractor.mainProp])
                 value = value.replace('${' + SiteExtractor.mainProp + '}', element[SiteExtractor.mainProp]);
+
+            if (value)
+                value = value.replace('${AddressCellCoordinates}', SiteExtractor.getAddressCellCoordinates());
         }
 
         if (extract.Attr)
@@ -373,8 +380,11 @@ const SiteExtractor = {
                 $(jPaths.Address.Path).each(function() {
                     let element = SiteExtractor.getElementDetails(siteSetting, elementProps, elements, $(this));
 
-                    if (element)
+                    if (element) {
                         elements.push(element);
+
+                        this.currentRowIndex++;
+                    }
                 });
             } else {
                 //address
