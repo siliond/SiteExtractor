@@ -117,8 +117,6 @@ const SiteExtractor = {
         navigator.clipboard.writeText(text).then(function() {
             SiteExtractor.pageLog('Async: Copying to clipboard was successful!', 'green');
         }, function(err) {
-            SiteExtractor.resetCurrentRowIndex();
-
             SiteExtractor.pageLog('Async: Could not copy text: ' + err);
         });
     },
@@ -349,6 +347,8 @@ const SiteExtractor = {
     },
 
     getAddresses: function() {
+        SiteExtractor.resetCurrentRowIndex();
+
         let addressProps = ["Address", "Status", "Price", "Link", "MapDuration", "Image", "MapLink"];
 
         return this.getElements(addressProps);
@@ -420,8 +420,6 @@ ${csvContents}`;
 
                 SiteExtractor.copyToClipboard(elementsText);
             } else {
-                SiteExtractor.resetCurrentRowIndex();
-
                 SiteExtractor.pageLog("No New addressed found.");
             }
         });
