@@ -106,8 +106,8 @@ const SiteExtractor = {
                 Bathrooms: { Path: 'span[data-qa="baths"]' },
                 SqFeet: { Path: 'span[data-qa="sqft"]' },
                 Lot: { Path: 'dt.label:contains("Lot Size Area:")', Siblings: 'dd.detail' },
-                MiddleSchool: { Path: 'dt.label:contains("Middle School")', Siblings: 'dd.detail' },
-                HighSchool: { Path: 'dt.label:contains("High School")', Siblings: 'dd.detail' }
+                MiddleSchool: { Path: 'dt.label:contains("Middle School")', Next: 'dd.detail' },
+                HighSchool: { Path: 'dt.label:contains("High School")', Next: 'dd.detail' }
             },
             "ExcludePrevious": true
         },
@@ -203,6 +203,8 @@ const SiteExtractor = {
             }
             if (extract.Siblings)
                 relativeElem = relativeElem.siblings(extract.Siblings);
+            if (extract.Next)
+                relativeElem = relativeElem.next(extract.Next);
 
             if (relativeElem) {
                 if (Array.isArray(relativeElem))
