@@ -1,5 +1,8 @@
 const previousAddresses = [
     //portal.onehome.com_2021-07-27
+    "9110 Waterview Parkway, Rowlett, TX 75089-2326",
+
+    //portal.onehome.com_2021-07-27
     "308 Post Oak Trail, Murphy, TX 75094-4339", "12184 Nandina Lane, Frisco, TX 75035-0189", "121 Addison DriveHighland Village, TX 75077-7101", "2917 Arlo Way, Aubrey, TX 76227-1780", "1314 Kingsley Court, Allen, TX 75013-4608",
 
     //cannonteamhomes.com_2021-07-25

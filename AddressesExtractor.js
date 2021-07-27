@@ -106,8 +106,10 @@ const SiteExtractor = {
                 Bathrooms: { Path: 'span[data-qa="baths"]' },
                 SqFeet: { Path: 'span[data-qa="sqft"]' },
                 Lot: { Path: 'dt.label:contains("Lot Size Area:")', Siblings: 'dd.detail' },
+
                 MiddleSchool: { Path: 'dt.label:contains("Middle School")', Next: 'dd.detail' },
-                HighSchool: { Path: 'dt.label:contains("High School")', Next: 'dd.detail' }
+                HighSchool: { Path: 'dt.label:contains("High School")', Next: 'dd.detail' },
+                ISDSchool: { Path: 'dt.label:contains("Unified School District")', Next: 'dd.detail' }
             },
             "ExcludePrevious": true
         },
@@ -353,7 +355,7 @@ const SiteExtractor = {
     },
 
     getAddress: function() {
-        let addressProps = ["Year", "Bedrooms", "Bathrooms", "SqFeet", "Lot", "MiddleSchool", "HighSchool"];
+        let addressProps = ["Year", "Bedrooms", "Bathrooms", "SqFeet", "Lot", "MiddleSchool", "HighSchool", "ISDSchool"];
 
         return this.getElements(addressProps, true);
     },
