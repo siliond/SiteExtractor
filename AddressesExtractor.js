@@ -97,7 +97,7 @@ const SiteExtractor = {
                 Address: { Path: "div.address-content" },
                 Status: { Value: "New" },
                 Price: { Siblings: "p.price" },
-                Link: { Closest: "div.property-container", Find: "a", Attr: "href", ValueBefore = '=hyperlink(""', ValueAfter = '"")' },
+                Link: { Closest: "div.property-container", Find: "a", Attr: "href", ValueBefore: '=hyperlink(""', ValueAfter: '"")' },
                 ListingType: { Closest: "div.property-container", Find: "div.callout-container", NotExpected: "Under Contract" },
 
                 //address
