@@ -7,14 +7,16 @@
 // document.getElementsByTagName('head')[0].appendChild(jq);
 
 const SiteExtractor = {
+    startRowIndex: 2,
     beVerbose: true,
     mainProp: "Address",
     siteSettings: {
         "Global": {
             "Paths": {
                 //addresses
-                Image: { Value: '=IMAGE(GetMapImageURL(""${Address}""))' },
-                MapLink: { Value: '=hyperlink(CONCATENATE(""https://www.google.com/maps/search/?api=1&query=${Address}""))' },
+                MapDuration: { Value: '=GetMapDuration(${CellCoordinates},General!B1)' },
+                Image: { Value: '=IMAGE(GetMapImageURL(${CellCoordinates}))' },
+                MapLink: { Value: '=hyperlink(CONCATENATE(""https://www.google.com/maps/search/?api=1&query="", ${CellCoordinates}))' },
 
                 ListingType: {}
             }
@@ -337,7 +339,7 @@ const SiteExtractor = {
     },
 
     getAddresses: function() {
-        let addressProps = ["Address", "Status", "Price", "Link", "Image", "MapLink"];
+        let addressProps = ["Address", "Status", "Price", "Link", "MapDuration", "Image", "MapLink"];
 
         return this.getElements(addressProps);
     },
