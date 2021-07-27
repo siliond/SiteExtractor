@@ -15,7 +15,7 @@ const SiteExtractor = {
         "Global": {
             "Paths": {
                 //addresses
-                MapDuration: { Value: '=GetMapDuration(${AddressCellCoordinates},General!B1)' },
+                MapDuration: { Value: '=GetMapDuration(${AddressCellCoordinates},General!$B$1)' },
                 Image: { Value: '=IMAGE(GetMapImageURL(${AddressCellCoordinates}))' },
                 MapLink: { Value: '=hyperlink(CONCATENATE(""https://www.google.com/maps/search/?api=1&query="", ${AddressCellCoordinates}))' },
 
@@ -97,7 +97,7 @@ const SiteExtractor = {
                 Address: { Path: "div.address-content" },
                 Status: { Value: "New" },
                 Price: { Siblings: "p.price" },
-                Link: { Closest: "div.property-container", Find: "a", Attr: "href" },
+                Link: { Closest: "div.property-container", Find: "a", Attr: "href", ValueBefore = '=hyperlink(""', ValueAfter = '"")' },
                 ListingType: { Closest: "div.property-container", Find: "div.callout-container", NotExpected: "Under Contract" },
 
                 //address
@@ -105,7 +105,9 @@ const SiteExtractor = {
                 Bedrooms: { Path: 'span[data-qa="beds"]' },
                 Bathrooms: { Path: 'span[data-qa="baths"]' },
                 SqFeet: { Path: 'span[data-qa="sqft"]' },
-                Lot: { Path: 'dt.label:contains("Lot Size Area:")', Siblings: 'dd.detail' }
+                Lot: { Path: 'dt.label:contains("Lot Size Area:")', Siblings: 'dd.detail' },
+                MiddleSchool: { Path: 'dt.label:contains("Middle School")', Siblings: 'dd.detail' },
+                HighSchool: { Path: 'dt.label:contains("High School")', Siblings: 'dd.detail' }
             },
             "ExcludePrevious": true
         },
@@ -216,6 +218,14 @@ const SiteExtractor = {
         let propFunction = SiteExtractor[`onJPath${prop}`];
         if (propFunction)
             value = propFunction(siteSetting, addresses, value, relativeElem);
+
+        if (value) {
+            if (extract.ValueBefore)
+                value = extract.ValueBefore + value;
+
+            if (extract.ValueAfter)
+                value = value + extract.ValueAfter;
+        }
 
         return value;
     },
@@ -341,7 +351,7 @@ const SiteExtractor = {
     },
 
     getAddress: function() {
-        let addressProps = ["Year", "Bedrooms", "Bathrooms", "SqFeet", "Lot"];
+        let addressProps = ["Year", "Bedrooms", "Bathrooms", "SqFeet", "Lot", "MiddleSchool", "HighSchool"];
 
         return this.getElements(addressProps, true);
     },
