@@ -383,7 +383,7 @@ const SiteExtractor = {
                     if (element) {
                         elements.push(element);
 
-                        this.currentRowIndex++;
+                        SiteExtractor.currentRowIndex++;
                     }
                 });
             } else {
