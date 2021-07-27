@@ -1,4 +1,7 @@
 const previousAddresses = [
+    //portal.onehome.com_2021-07-27
+    "308 Post Oak Trail, Murphy, TX 75094-4339", "12184 Nandina Lane, Frisco, TX 75035-0189", "121 Addison DriveHighland Village, TX 75077-7101", "2917 Arlo Way, Aubrey, TX 76227-1780", "1314 Kingsley Court, Allen, TX 75013-4608",
+
     //cannonteamhomes.com_2021-07-25
     "1512 Elizabeth Creek Dr Little Elm, TX 750684", "3849 Belle Way Corinth, TX 762086", "816 Shady Meadow Dr Highland Village, TX 750774", "1932 Michelle Creek Dr Little Elm, TX 750684", "111 Palomino Ct Shady Shores, TX 762083", "612 Belmeade Ln Flower Mound, TX 750284",
     "5942 Deerwood Ln Frisco, TX 750364", "1071 E Oak Shores Dr Cross Roads, TX 762274", "917 Providence St Denton, TX 762054", "1513 Oakhollow Dr Corinth, TX 762105", "4821 New Hope Rd Aubrey, TX 762273", "1905 Doecrest Dr Denton, TX 762105", "3005 Hillside Dr Highland Village, TX 750774",
