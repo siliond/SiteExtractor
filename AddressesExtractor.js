@@ -7,6 +7,7 @@
 // document.getElementsByTagName('head')[0].appendChild(jq);
 
 const SiteExtractor = {
+    startRowIndex: 2,
     currentRowIndex: 2,
     beVerbose: true,
     mainProp: "Address",
@@ -116,6 +117,8 @@ const SiteExtractor = {
         navigator.clipboard.writeText(text).then(function() {
             SiteExtractor.pageLog('Async: Copying to clipboard was successful!', 'green');
         }, function(err) {
+            SiteExtractor.resetCurrentRowIndex();
+
             SiteExtractor.pageLog('Async: Could not copy text: ' + err);
         });
     },
@@ -351,6 +354,10 @@ const SiteExtractor = {
         return this.getElements(addressProps);
     },
 
+    resetCurrentRowIndex: function() {
+        SiteExtractor.currentRowIndex = SiteExtractor.startRowIndex;
+    },
+
     getElementDetails(siteSetting, elementProps, elements, jElement) {
         let element = {};
 
@@ -413,6 +420,8 @@ ${csvContents}`;
 
                 SiteExtractor.copyToClipboard(elementsText);
             } else {
+                SiteExtractor.resetCurrentRowIndex();
+
                 SiteExtractor.pageLog("No New addressed found.");
             }
         });
