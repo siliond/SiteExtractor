@@ -85,7 +85,11 @@ const SiteExtractor = {
                 Bedrooms: { Path: 'small:contains("Bed")', Siblings: 'h4.no-margin' },
                 Bathrooms: { Path: 'small:contains("Bath")', Siblings: 'h4.no-margin' },
                 SqFeet: { Path: 'small:contains("SqFt")', Siblings: 'h4.no-margin' },
-                Lot: { Path: 'span.header:contains("Lot/Acreage")', Siblings: 'span.content' }
+                Lot: { Path: 'span.header:contains("Lot/Acreage")', Siblings: 'span.content' },
+
+                MiddleSchool: { Path: 'span.header:contains("Middle School")', Siblings: 'span.content' },
+                HighSchool: { Path: 'span.header:contains("High School")', Siblings: 'span.content' },
+                ISDSchool: { Path: 'span.header:contains("School District")', Siblings: 'span.content' }
             },
             "ExcludePrevious": true
         },

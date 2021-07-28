@@ -1,4 +1,21 @@
 const previousAddresses = [
+    //portal.onehome.com_2021-07-28
+    "3312 Provine Road, McKinney, TX 75072-3995", "14140 Edgecrest Drive, Dallas, TX 75254-2802",
+
+    //cannonteamhomes.com_2021-07-28
+    "2912 Greenview Dr Mc, Kinney, TX 750724", "20070 Saratoga Trl Frisco, TX 750364",
+
+    //www.dfwrealestate.com_2021-07-28
+    "6003 Gregory Lane Parker, TX 75002", "2500 Stanford Drive Flower Mound, TX 75022", "2501 Baffin Bay Court Plano, TX 75075", "718 Smith Road Ponder, TX 76259", "222 Scenic Drive Highland Village, TX 75077",
+    //www.dfwrealestate.com_2021-07-28
+    "3075 Belz Road Sanger, TX 76266", "3325 Buckle Lane Plano, TX 75023", "2301 Tamarisk Lane Plano, TX 75023", "3066 Oakwood Drive Celina, TX 75009", "911 Clearview Street Krum, TX 76249", "18889 Fm 1778 Nevada, TX 75173",
+    //www.dfwrealestate.com_2021-07-28
+    "2912 Greenview Drive Mc, Kinney, TX 75072", "13508 Prairie Vista Lane Ponder, TX 76259", "2201 Augusta Mc, Kinney, TX 75072", "609 Fm 2194 Farmersville, TX 75442",
+    //www.dfwrealestate.com_2021-07-28
+    "3513 Seltzer Drive Plano, TX 75023", "7056 Jackson Road Krum, TX 76249", "1515 Malone Drive Royse City, TX 75189", "6216 High Meadows Drive Krum, TX 76249", "2802 Valley Ridge Drive Richardson, TX 75080",
+    //www.dfwrealestate.com_2021-07-28
+    "322 Easy Street Little Elm, TX 75068", "7301 Ryan Drive Plano, TX 75025", "Tbd Fm 75 Princeton, TX 75407",
+
     //portal.onehome.com_2021-07-27
     "214 Covey Lane, McKinney, TX 75071-0327", "3013 Eagle Lane, Melissa, TX 75454", "4460 Stargazer Drive, Plano, TX 75024-7717", "541 Komron Court, Prosper, TX 75078-9414", "3201 Shore View DriveHighland Village, TX 75077-6454",
 
