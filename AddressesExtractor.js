@@ -19,7 +19,12 @@ const SiteExtractor = {
                 Image: { Value: '=IMAGE(GetMapImageURL(${AddressCellCoordinates}))' },
                 MapLink: { Value: '=hyperlink(CONCATENATE(""https://www.google.com/maps/search/?api=1&query="", ${AddressCellCoordinates}))' },
 
-                ListingType: {}
+                ListingType: {},
+
+                //address
+                MiddleSchool: {},
+                HighSchool: {},
+                ISDSchool: {}
             }
         },
 
