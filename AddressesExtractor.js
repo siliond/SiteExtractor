@@ -24,7 +24,9 @@ const SiteExtractor = {
                 //address
                 MiddleSchool: {},
                 HighSchool: {},
-                ISDSchool: {}
+                ISDSchool: {},
+
+                Summary: { '=CONCATENATE(A$1, "": "", A${AddressCellRow}, CHAR(10), B$1, "": "", B${AddressCellRow}, CHAR(10), C$1, "": "", C${AddressCellRow}, CHAR(10), F$1, "": "", Round(F${AddressCellRow}, 0), CHAR(10), H$1, "": "", H${AddressCellRow}, CHAR(10), I$1, "": "", I${AddressCellRow}, CHAR(10), J$1, "": "", J${AddressCellRow}, CHAR(10), K$1, "": "", K${AddressCellRow}, CHAR(10), L$1, "": "", L${AddressCellRow}, CHAR(10), M$1, "": "", M${AddressCellRow}, CHAR(10), N$1, "": "", N${AddressCellRow}, CHAR(10), O$1, "": "", O${AddressCellRow})' }
             }
         },
 
@@ -175,8 +177,12 @@ const SiteExtractor = {
         return extract;
     },
 
+    getAddressCellRow: function() {
+        return SiteExtractor.currentRowIndex.toString();
+    },
+
     getAddressCellCoordinates: function() {
-        return "A" + SiteExtractor.currentRowIndex.toString();
+        return "A" + SiteExtractor.getAddressCellRow();
     },
 
     jPathDrill: function(siteSetting, addresses, element, elem, prop) {
@@ -192,6 +198,9 @@ const SiteExtractor = {
 
             if (value)
                 value = value.replace('${AddressCellCoordinates}', SiteExtractor.getAddressCellCoordinates());
+
+            if (value)
+                value = value.replace('${AddressCellRow}', SiteExtractor.getAddressCellRow());
         }
 
         if (extract.Attr)
@@ -364,7 +373,7 @@ const SiteExtractor = {
     },
 
     getAddress: function() {
-        let addressProps = ["Year", "Bedrooms", "Bathrooms", "SqFeet", "Lot", "MiddleSchool", "HighSchool", "ISDSchool"];
+        let addressProps = ["Year", "Bedrooms", "Bathrooms", "SqFeet", "Lot", "MiddleSchool", "HighSchool", "ISDSchool", "Summary"];
 
         return this.getElements(addressProps, true);
     },
@@ -372,7 +381,7 @@ const SiteExtractor = {
     getAddresses: function() {
         SiteExtractor.resetCurrentRowIndex();
 
-        let addressProps = ["Address", "Status", "Price", "Link", "MapDuration", "Image", "MapLink"];
+        let addressProps = ["Address", "Status", "Price", "Link", "Image", "MapDuration", "MapLink"];
 
         return this.getElements(addressProps);
     },

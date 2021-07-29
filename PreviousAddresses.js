@@ -1,4 +1,18 @@
 const previousAddresses = [
+    //portal.onehome.com_2021-07-29
+    "4657 Ainsley Drive, Plano, TX 75024-6309",
+    //www.dfwrealestate.com_2021-07-29
+    "2747 Wildwood Lane Celina, TX 75009",
+
+    //cannonteamhomes.com_2021-07-29
+    "705 Andersonville Ln Wylie, TX 750984",
+
+    //www.trulia.com_2021-07-29
+    "59 County Road 160Whitesboro, TX", "105 Southampton Dr, Rockwall, TX",
+
+    //www.trulia.com_2021-07-29
+    "865 Higgins Rd, Sherman, TX",
+
     //portal.onehome.com_2021-07-28
     "3312 Provine Road, McKinney, TX 75072-3995", "14140 Edgecrest Drive, Dallas, TX 75254-2802",
 
