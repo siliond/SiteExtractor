@@ -217,7 +217,7 @@ const SiteExtractor = {
 
                 value = value.replace('${AddressCellCoordinates}', SiteExtractor.getAddressCellCoordinates());
 
-                value = value.replace(new RegExp('\$\{AddressCellRow\}', 'g'), SiteExtractor.getAddressCellRow());
+                value = value.replace(new RegExp('\\$\\{AddressCellRow\\}', 'g'), SiteExtractor.getAddressCellRow());
             }
         }
 
