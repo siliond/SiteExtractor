@@ -51,7 +51,25 @@ const SiteExtractor = {
 
 
         //https://www.redfin.com/city/30868/TX/Plano/filter/property-type=house,max-price=650k,min-beds=3,min-baths=2,min-year-built=1990,min-lot-size=0.25-acre,include=forsale+mlsfsbo+construction+fsbo+foreclosed,viewport=33.47482:32.6288:-95.97419:-97.62625
-        "www.redfin.com": { "Path": "div.link-and-anchor", "ExcludePrevious": true },
+        "www.redfin.com": {
+            "ExcludePrevious": true,
+            "Paths": {
+                //addresses
+                Address: { Path: "div.link-and-anchor" },
+                Status: { Value: "New" },
+                Price: { Closest: "div.bottomV2", Find: "span.homecardV2Price" },
+                Link: { Closest: "a", Attr: "href" },
+
+                ListingType: {},
+
+                //address
+                Year: { Path: 'div[data-testid="features-container"]', Find: 'div:contains("Year Built"):not(:has(:contains("Year Built")))', Siblings: 'div' },
+                Bedrooms: { Path: 'div:contains(" Beds")' },
+                Bathrooms: { Path: 'div:contains(" Baths")' },
+                SqFeet: { Path: 'div:contains(" sqft")' },
+                Lot: { Path: 'span:contains("Lot Size: ")' }
+            }
+        },
 
         //https://www.trulia.com/for_sale/32.8198,33.30782,-96.91955,-96.54632_xy/3p_beds/2p_baths/0-650000_price/2500p_sqft/price;a_sort/0.25p_ls/2000p_built/accepting_offers,coming_soon,foreclosure,fsbo,new_homes,resale_lt/
         "www.trulia.com": {
