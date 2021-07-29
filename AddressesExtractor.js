@@ -26,7 +26,7 @@ const SiteExtractor = {
                 HighSchool: {},
                 ISDSchool: {},
 
-                Summary: { '=CONCATENATE(A$1, "": "", A${AddressCellRow}, CHAR(10), B$1, "": "", B${AddressCellRow}, CHAR(10), C$1, "": "", C${AddressCellRow}, CHAR(10), F$1, "": "", Round(F${AddressCellRow}, 0), CHAR(10), H$1, "": "", H${AddressCellRow}, CHAR(10), I$1, "": "", I${AddressCellRow}, CHAR(10), J$1, "": "", J${AddressCellRow}, CHAR(10), K$1, "": "", K${AddressCellRow}, CHAR(10), L$1, "": "", L${AddressCellRow}, CHAR(10), M$1, "": "", M${AddressCellRow}, CHAR(10), N$1, "": "", N${AddressCellRow}, CHAR(10), O$1, "": "", O${AddressCellRow})' }
+                Summary: { Value: '=CONCATENATE(A$1, "": "", A${AddressCellRow}, CHAR(10), B$1, "": "", B${AddressCellRow}, CHAR(10), C$1, "": "", C${AddressCellRow}, CHAR(10), F$1, "": "", Round(F${AddressCellRow}, 0), CHAR(10), H$1, "": "", H${AddressCellRow}, CHAR(10), I$1, "": "", I${AddressCellRow}, CHAR(10), J$1, "": "", J${AddressCellRow}, CHAR(10), K$1, "": "", K${AddressCellRow}, CHAR(10), L$1, "": "", L${AddressCellRow}, CHAR(10), M$1, "": "", M${AddressCellRow}, CHAR(10), N$1, "": "", N${AddressCellRow}, CHAR(10), O$1, "": "", O${AddressCellRow})' }
             }
         },
 
