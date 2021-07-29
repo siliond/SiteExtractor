@@ -1,4 +1,13 @@
 const previousAddresses = [
+    //www.redfin.com_2021-07-29
+    "7412 Belcrest Dr, Frisco, TX 75034", "1017 Nob Hill Pl, Mc, Kinney, TX 75071", "4904 Heritage Cir, Sachse, TX 75048", "701 Westwood Ct, Anna, TX 75409", "206 S Murray St, Mc, Kinney, TX 75069", "1826 Lone Lynx Way, Wylie, TX 75098", "245 Sue Ct, Wylie, TX 75098", "2709 N Wavecrest Ct, Little Elm, TX 75068", "7201 Red Sky Dr, Rowlett, TX 75089", "924 Westwind Cv, Coppell, TX 75019", "2534 Greenfield Acres, Princeton, TX 75407", "3040 Spanish Oak Trl, Melissa, TX 75454", "3864 Menard Dr, Carrollton, TX 75010",
+
+    //www.redfin.com_2021-07-29
+    "3500 Quail View Dr, Mc, Kinney, TX 75071", "5807 Old Spanish Trl, Mc, Kinney, TX 75071", "2086 Kamla Rd, Lewisville, TX 75067", "600 Cove Ct, Princeton, TX 75407", "5605 Old Spanish Trl, Mc, Kinney, TX 75071", "430 Davidson Dr, Garland, TX 75040", "821 Crestview Dr, Coppell, TX 75019",
+
+    //www.redfin.com_2021-07-29
+    "1621 Laurel Cherry Ln, Wylie, TX 75098",
+
     //portal.onehome.com_2021-07-29
     "4657 Ainsley Drive, Plano, TX 75024-6309",
     //www.dfwrealestate.com_2021-07-29

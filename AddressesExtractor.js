@@ -63,11 +63,11 @@ const SiteExtractor = {
                 ListingType: {},
 
                 //address
-                Year: { Path: 'div[data-testid="features-container"]', Find: 'div:contains("Year Built"):not(:has(:contains("Year Built")))', Siblings: 'div' },
-                Bedrooms: { Path: 'div:contains(" Beds")' },
-                Bathrooms: { Path: 'div:contains(" Baths")' },
-                SqFeet: { Path: 'div:contains(" sqft")' },
-                Lot: { Path: 'span:contains("Lot Size: ")' }
+                Year: { Path: 'span.header:contains("Year Built")', Siblings: 'span.content' },
+                Bedrooms: { Path: 'div.beds-section > div.statsValue' },
+                Bathrooms: { Path: 'div.baths-section > div.statsValue' },
+                SqFeet: { Path: 'div.sqft-section > div.statsValue' },
+                Lot: { Path: 'span.header:contains("Lot Size")', Siblings: 'span.content' }
             }
         },
 
