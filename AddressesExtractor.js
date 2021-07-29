@@ -66,7 +66,7 @@ const SiteExtractor = {
                 Year: { Path: 'span.header:contains("Year Built")', Siblings: 'span.content' },
                 Bedrooms: { Path: 'div.beds-section > div.statsValue' },
                 Bathrooms: { Path: 'div.baths-section > div.statsValue' },
-                SqFeet: { Path: 'div.sqft-section > div.statsValue' },
+                SqFeet: { Path: 'div.sqft-section > span.statsValue' },
                 Lot: { Path: 'span.header:contains("Lot Size")', Siblings: 'span.content' }
             }
         },
@@ -302,7 +302,8 @@ const SiteExtractor = {
     },
 
     toNumber: function(value) {
-        value = parseFloat(value.replace(/,/g, ''));
+        if (value)
+            value = parseFloat(value.replace(/,/g, ''));
 
         return value;
     },
