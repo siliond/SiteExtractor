@@ -211,14 +211,14 @@ const SiteExtractor = {
         if (extract.Value) {
             value = extract.Value;
 
-            if (value && element && element[SiteExtractor.mainProp])
-                value = value.replace('${' + SiteExtractor.mainProp + '}', element[SiteExtractor.mainProp]);
+            if (value) {
+                if (element && element[SiteExtractor.mainProp])
+                    value = value.replace('${' + SiteExtractor.mainProp + '}', element[SiteExtractor.mainProp]);
 
-            if (value)
                 value = value.replace('${AddressCellCoordinates}', SiteExtractor.getAddressCellCoordinates());
 
-            if (value)
                 value = value.replace('${AddressCellRow}', SiteExtractor.getAddressCellRow());
+            }
         }
 
         if (extract.Attr)
