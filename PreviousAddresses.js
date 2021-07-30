@@ -1,4 +1,19 @@
 const previousAddresses = [
+    //portal.onehome.com_2021-07-30
+    "2320 Table Rock Court, Arlington, TX 76006-2784", "3613 Sequoia Lane, Melissa, TX 75454-0490",
+    //cannonteamhomes.com_2021-07-30
+    "1601 Twilight Dr Flower Mound, TX 750283", "12179 Bryant Dr Frisco, TX 750334", "3318 Peakview Dr Corinth, TX 762103",
+    //www.trulia.com_2021-07-30
+    "1568 Cromwell Ct, Rockwall, TX",
+    //www.trulia.com_2021-07-30
+    "3122 Buxton CirBlue Ridge, TX",
+    //www.trulia.com_2021-07-30
+    "12179 Bryant Dr, Frisco, TX", "11244 S Emerald Ranch Ln, Forney, TX",
+    //www.trulia.com_2021-07-30
+    "633 Summer Oaks Dr, Rockwall, TX",
+    //www.dfwrealestate.com_2021-07-30
+    "7331 Sandstone Drive Sanger, TX 76266", "930 Declaration Drive Nevada, TX 75173",
+
     //portal.onehome.com_2021-07-29
     "9009 Royal Burgess Drive, Rowlett, TX 75089-9582", "9714 Waterview Parkway, Rowlett, TX 75089-9512", "905 Hills Creek Drive, McKinney, TX 75072-5231", "2901 Stonepointe Drive, McKinney, TX 75072-4029", "7034 Lattimore Drive, Dallas, TX 75252-6116",
 
