@@ -1,4 +1,13 @@
 const previousAddresses = [
+    //portal.onehome.com_2021-07-29
+    "9009 Royal Burgess Drive, Rowlett, TX 75089-9582", "9714 Waterview Parkway, Rowlett, TX 75089-9512", "905 Hills Creek Drive, McKinney, TX 75072-5231", "2901 Stonepointe Drive, McKinney, TX 75072-4029", "7034 Lattimore Drive, Dallas, TX 75252-6116",
+
+    //portal.onehome.com_2021-07-29
+    "7034 Lattimore Drive, Dallas, TX 75252-6116",
+
+    //cannonteamhomes.com_2021-07-29
+    "933 Kingwood Cir Highland Village, TX 750774",
+
     //www.redfin.com_2021-07-29
     "7412 Belcrest Dr, Frisco, TX 75034", "1017 Nob Hill Pl, Mc, Kinney, TX 75071", "4904 Heritage Cir, Sachse, TX 75048", "701 Westwood Ct, Anna, TX 75409", "206 S Murray St, Mc, Kinney, TX 75069", "1826 Lone Lynx Way, Wylie, TX 75098", "245 Sue Ct, Wylie, TX 75098", "2709 N Wavecrest Ct, Little Elm, TX 75068", "7201 Red Sky Dr, Rowlett, TX 75089", "924 Westwind Cv, Coppell, TX 75019", "2534 Greenfield Acres, Princeton, TX 75407", "3040 Spanish Oak Trl, Melissa, TX 75454", "3864 Menard Dr, Carrollton, TX 75010",
 
