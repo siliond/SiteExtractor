@@ -1,5 +1,11 @@
 const previousAddresses = [
     //portal.onehome.com_2021-07-30
+    "731 Bethany Lake Boulevard, Allen, TX 75002-4811", "5505 Lomita Circle, Plano, TX 75023-5200",
+
+    //cannonteamhomes.com_2021-07-30
+    "5505 Lomita Cir Plano, TX 750235", "1601 Twilight Dr Flower Mound, TX 750283", "12179 Bryant Dr Frisco, TX 750334", "3318 Peakview Dr Corinth, TX 762103",
+
+    //portal.onehome.com_2021-07-30
     "2320 Table Rock Court, Arlington, TX 76006-2784", "3613 Sequoia Lane, Melissa, TX 75454-0490",
     //cannonteamhomes.com_2021-07-30
     "1601 Twilight Dr Flower Mound, TX 750283", "12179 Bryant Dr Frisco, TX 750334", "3318 Peakview Dr Corinth, TX 762103",
