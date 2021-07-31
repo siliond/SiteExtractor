@@ -1,4 +1,13 @@
 const previousAddresses = [
+    //portal.onehome.com_2021-07-31
+    "9006 Lakehurst Avenue, Rowlett, TX 75089-0126", "1015 Fairdale Court, Wylie, TX 75098-7335", "8017 Canterbury Terrace, McKinney, TX 75072-6943", "1542 Wildfire, Frisco, TX 75033", "8919 Vista Gate Drive, Dallas, TX 75243-7236", "6704 Carriage Lane, Colleyville, TX 76034-5771",
+
+    //cannonteamhomes.com_2021-07-31
+    "8017 Canterbury Terrace Mc, Kinney, TX 750724", "1542 Wildfire Frisco, TX 750335", "195 Connor Ln Lucas, TX 750024", "7108 Brisas Ct Denton, TX 762104", "1620 Terrace Dr Lantana, TX 762263", "2629 Elk Horn Dr Little Elm, TX 750684",
+
+    //www.trulia.com_2021-07-31
+    "230 Harvey Trl, Fate, TX",
+
     //portal.onehome.com_2021-07-30
     "6413 Kearsage Drive, Rowlett, TX 75089-3994",
 
