@@ -1,5 +1,8 @@
 const previousAddresses = [
     //portal.onehome.com_2021-07-30
+    "6413 Kearsage Drive, Rowlett, TX 75089-3994",
+
+    //portal.onehome.com_2021-07-30
     "731 Bethany Lake Boulevard, Allen, TX 75002-4811", "5505 Lomita Circle, Plano, TX 75023-5200",
 
     //cannonteamhomes.com_2021-07-30
