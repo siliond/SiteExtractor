@@ -89,9 +89,9 @@ const SiteExtractor = {
 
                 //address
                 Year: { Path: 'div[data-testid="features-container"]', Find: 'div:contains("Year Built"):not(:has(:contains("Year Built")))', Siblings: 'div' },
-                Bedrooms: { Path: 'div[data-testid="bed"]', Find: 'div:contains(" Beds")' },
-                Bathrooms: { Path: 'div[data-testid="bath"]', Find: 'div:contains(" Baths")' },
-                SqFeet: { Path: 'div[data-testid="floor"]', Find: 'div:contains(" sqft")' },
+                Bedrooms: { Path: 'li[data-testid="bed"]', Find: 'div:contains(" Beds")' },
+                Bathrooms: { Path: 'li[data-testid="bath"]', Find: 'div:contains(" Baths")' },
+                SqFeet: { Path: 'li[data-testid="floor"]', Find: 'div:contains(" sqft")' },
                 Lot: { Path: 'span:contains("Lot Area: ")' }
             }
         },
