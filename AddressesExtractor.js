@@ -317,7 +317,12 @@ const SiteExtractor = {
         for (let i = 0; i < SiteExtractor.valueSeparators.length; i++) {
             const valueSeparator = SiteExtractor.valueSeparators[i];
 
+            if (Array.isArray(value) && value.length == 1)
+                value = value[0];
+
             value = value.split(valueSeparator);
+
+
 
             if (value.length > 1)
                 break;
