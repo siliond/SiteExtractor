@@ -11,6 +11,7 @@ const SiteExtractor = {
     currentRowIndex: 2,
     beVerbose: true,
     mainProp: "Address",
+    valueSeparators: ['•', '·', ':'],
     siteSettings: {
         "Global": {
             "Paths": {
@@ -290,11 +291,11 @@ const SiteExtractor = {
     },
 
     onJPathBedrooms: function(siteSetting, addresses, value, jElement) {
-        return SiteExtractor.toNumber(SiteExtractor.splitDot(value, 1));
+        return SiteExtractor.toNumber(SiteExtractor.splitValue(value, 1));
     },
 
     onJPathBathrooms: function(siteSetting, addresses, value, jElement) {
-        return SiteExtractor.toNumber(SiteExtractor.splitDot(value, 1));
+        return SiteExtractor.toNumber(SiteExtractor.splitValue(value, 1));
     },
 
     onJPathSqFeet: function(siteSetting, addresses, value, jElement) {
@@ -302,7 +303,7 @@ const SiteExtractor = {
     },
 
     onJPathLot: function(siteSetting, addresses, value, jElement) {
-        return SiteExtractor.toNumber(value);
+        return SiteExtractor.toNumber(SiteExtractor.splitValue(value, 1));
     },
 
     toNumber: function(value) {
@@ -312,16 +313,20 @@ const SiteExtractor = {
         return value;
     },
 
-    splitDot: function(value, index = 0) {
-        value = value.split(" • ");
+    splitValue: function(value, index = 0) {
+        for (let i = 0; i < SiteExtractor.valueSeparators.length; i++) {
+            const valueSeparator = SiteExtractor.valueSeparators[i];
 
-        if (value.length == 1)
-            value = value[0].split(' · ');
+            value = value.split(valueSeparator);
+
+            if (value.length > 1)
+                break;
+        }
 
         if (value.length <= index)
             index = 0;
 
-        value = value[index];
+        value = value[index].trim();
 
         return value;
     },
@@ -349,7 +354,7 @@ const SiteExtractor = {
     onJPathAddress: function(siteSetting, addresses, value, jElement) {
         let excludePrevious = siteSetting.ExcludePrevious;
 
-        value = SiteExtractor.splitDot(value, 0);
+        value = SiteExtractor.splitValue(value, 0);
 
         value = value.replace(/ Bed$/i, "");
         value = value.replace(/\n/gi, " ");
