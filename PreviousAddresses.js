@@ -1,4 +1,10 @@
 const previousAddresses = [
+    //www.trulia.com_2021-08-01
+    "1955 Creekside Dr, Rockwall, TX",
+
+    //www.redfin.com_2021-08-01
+    "1257 Huffines Blvd, Wylie, TX 75098",
+
     //portal.onehome.com_2021-07-31
     "9006 Lakehurst Avenue, Rowlett, TX 75089-0126", "1015 Fairdale Court, Wylie, TX 75098-7335", "8017 Canterbury Terrace, McKinney, TX 75072-6943", "1542 Wildfire, Frisco, TX 75033", "8919 Vista Gate Drive, Dallas, TX 75243-7236", "6704 Carriage Lane, Colleyville, TX 76034-5771",
 
