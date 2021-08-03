@@ -303,7 +303,12 @@ const SiteExtractor = {
     },
 
     onJPathLot: function(siteSetting, addresses, value, jElement) {
-        return SiteExtractor.toNumber(SiteExtractor.splitValue(value, 1));
+        let lot = SiteExtractor.toNumber(SiteExtractor.splitValue(value, 1));
+
+        if (lot > 10)
+            lot /= 43560;
+
+        return lot;
     },
 
     toNumber: function(value) {

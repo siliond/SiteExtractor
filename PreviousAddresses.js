@@ -1,5 +1,8 @@
 const previousAddresses = [
 
+    //www.trulia.com_2021-08-03
+    "2918 Broken Spoke Ln, Rockwall, TX",
+
     //portal.onehome.com_2021-08-03
     "3941 Lost Creek Drive, Plano, TX 75074-7769", "401 Simmons RoadDouble Oak, TX 75077", "6032 Toledo Street, Plano, TX 75094-4601", "3505 Largo CourtFlower Mound, TX 75028-3938", "4539 Glenshire Court, Sachse, TX 75048-6633", "3905 Rock Trail, Plano, TX 75074-7761", "5102 Valencia Drive, Rowlett, TX 75089-4122",
 
