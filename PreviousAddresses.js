@@ -1,4 +1,25 @@
 const previousAddresses = [
+
+    //portal.onehome.com_2021-08-03
+    "3941 Lost Creek Drive, Plano, TX 75074-7769", "401 Simmons RoadDouble Oak, TX 75077", "6032 Toledo Street, Plano, TX 75094-4601", "3505 Largo CourtFlower Mound, TX 75028-3938", "4539 Glenshire Court, Sachse, TX 75048-6633", "3905 Rock Trail, Plano, TX 75074-7761", "5102 Valencia Drive, Rowlett, TX 75089-4122",
+
+    //portal.onehome.com_2021-08-03
+    "3941 Lost Creek Drive, Plano, TX 75074-7769", "401 Simmons RoadDouble Oak, TX 75077", "6032 Toledo Street, Plano, TX 75094-4601", "3505 Largo CourtFlower Mound, TX 75028-3938", "4539 Glenshire Court, Sachse, TX 75048-6633", "3905 Rock Trail, Plano, TX 75074-7761", "5102 Valencia Drive, Rowlett, TX 75089-4122",
+
+    //www.dfwrealestate.com_2021-08-03
+    "106 Spanish Oaks Drive Krugerville, TX 76227", "100 Spanish Oaks Drive Krugerville, TX 76227", "104 Spanish Oaks Drive Krugerville, TX 76227", "109 Spanish Oaks Drive Krugerville, TX 76227", "3941 Lost Creek Drive Plano, TX 75074",
+
+    //www.trulia.com_2021-08-03
+    "100 Spanish Oak Dr, Aubrey, TX", "1305 Jennifer DrCreekside Village, Garland, TX", "106 Spanish Oak Dr, Aubrey, TX",
+
+    //www.redfin.com_2021-08-03
+    "3941 Lost Creek Dr, Plano, TX 75074", "5102 Valencia Dr, Rowlett, TX 75089", "616 Lazy River Dr, Princeton, TX 75407",
+
+    //portal.onehome.com_2021-08-01
+    "16305 Harper Road, Prosper, TX 75078-1835", "708 Lafayette Drive, Denton, TX 76205-8074", "3209 Merrimack LaneFlower Mound, TX 75022-4460", "241 Merriman DriveHighland Village, TX 75077-6868", "4577 San Marcos Way, Frisco, TX 75034-6697", "2506 Ravinia Drive, Corinth, TX 76208", "2190 Tartan TrailHighland Village, TX 75077-3154", "830 Speargrass Lane, Prosper, TX 75078-1574", "4027 Mattise DriveFlower Mound, TX 75022-2886", "1599 Lakeshore BoulevardOak Point, TX 75068-2408",
+
+    //portal.onehome.com_2021-08-01
+    "5102 Valencia Drive, Rowlett, TX 75089-4122",
     //www.trulia.com_2021-08-01
     "1955 Creekside Dr, Rockwall, TX",
 
