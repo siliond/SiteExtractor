@@ -1,4 +1,9 @@
 const previousAddresses = [
+    //portal.onehome.com_2021-08-04
+    "1804 Southwicke DriveFlower Mound, TX 75022-8430",
+
+    //www.dfwrealestate.com_2021-08-04
+    "1013 Hilltop Drive Lavon, TX 75166",
 
     //www.trulia.com_2021-08-03
     "2918 Broken Spoke Ln, Rockwall, TX",
