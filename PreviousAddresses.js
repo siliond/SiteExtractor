@@ -1,5 +1,21 @@
 const previousAddresses = [
     //portal.onehome.com_2021-08-04
+    "762 WINDSOR Drive, Coppell, TX 75019-2520", "1116 Wedge Hill Road, McKinney, TX 75072-5234",
+
+    //cannonteamhomes.com_2021-08-04
+    "4512 Claret Ct Argyle, TX 762264", "6460 Cherry Hills Dr Frisco, TX 750363",
+
+    //www.dfwrealestate.com_2021-08-04
+    "9715 Prairie Flower Trail Princeton, TX 75407",
+
+    //www.trulia.com_2021-08-04
+    "7502 Waterwood Dr, Rowlett, TX",
+
+
+    //cannonteamhomes.com_2021-08-04
+    "6460 Cherry Hills Dr Frisco, TX 750363",
+
+    //portal.onehome.com_2021-08-04
     "1804 Southwicke DriveFlower Mound, TX 75022-8430",
 
     //www.dfwrealestate.com_2021-08-04
