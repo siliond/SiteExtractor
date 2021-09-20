@@ -110,7 +110,7 @@ const SiteExtractor = {
         for (let i = 0; i < jPaths.length; i++) {
             extract = jPaths[i];
 
-            elementpush(SiteExtractor.jPathDrill(extract));
+            element.push(SiteExtractor.jPathDrill(extract));
         }
 
         return element;
