@@ -42,7 +42,7 @@ const SiteExtractor = {
         return stack.join("/");
     },
 
-    jPathDrill: function(extract) {
+    jPathDrill: function(index, extract) {
         let value;
         let relativeElem;
 
@@ -84,7 +84,7 @@ const SiteExtractor = {
             }
         }
 
-        let propFunction = SiteExtractor[`onJPath${prop}`];
+        let propFunction = SiteExtractor[`onJPath${index}`];
         if (propFunction)
             value = propFunction(extract, relativeElem);
 
@@ -110,7 +110,7 @@ const SiteExtractor = {
         for (let i = 0; i < jPaths.length; i++) {
             extract = jPaths[i];
 
-            element.push(SiteExtractor.jPathDrill(extract));
+            element.push(SiteExtractor.jPathDrill(i, extract));
         }
 
         return element;
