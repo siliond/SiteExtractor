@@ -1,4 +1,7 @@
 const SiteExtractor = {
+    extractIndex: 0,
+    stopExtractLoop: false,
+
     siteSettings: {
         "Global": {
             "Paths": {}
@@ -102,36 +105,50 @@ const SiteExtractor = {
         if (extract.Action)
             if (extract.ActionParam)
                 value = relativeElem[extract.Action](extract.ActionParam);
-            else
-                value = relativeElem[extract.Action]();
+            else {
+                if (extract.Action == 'click') {
+                    SiteExtractor.stopExtractLoop = true;
 
-        return value;
+                    value = relativeElem[extract.Action](SiteExtractor.getElementDetails);
+                } else
+                    value = relativeElem[extract.Action]();
+
+                return value;
+            }
     },
 
     extract: function() {
+        SiteExtractor.resetExtractIndex();
+
         return this.getElements();
     },
 
-    getElementDetails(siteSetting) {
+    resetExtractIndex: function() {
+        SiteExtractor.extractIndex = 0;
+    },
+
+    getElementDetails() {
         let jPaths = this.siteSettings[window.location.hostname].Paths;
         let element = [];
 
-        for (let i = 0; i < jPaths.length; i++) {
+        SiteExtractor.stopExtractLoop = false;
+
+        for (let i = SiteExtractor.extractIndex; !SiteExtractor.stopExtractLoop && i < jPaths.length; i++) {
             let extract = jPaths[i];
 
             element.push(SiteExtractor.jPathDrill(i, extract));
+
+            SiteExtractor.extractIndex = i + 1;
         }
 
         return element;
     },
 
     getElements: function(elementProps, noPrefix = false) {
-        let siteSetting = this.siteSettings[window.location.hostname];
-
         jQuery(function($) {
             var elements = [];
 
-            let element = SiteExtractor.getElementDetails(siteSetting);
+            let element = SiteExtractor.getElementDetails();
 
             elements.push(element);
 
