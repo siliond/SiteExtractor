@@ -99,6 +99,9 @@ const SiteExtractor = {
                 value = value + extract.ValueAfter;
         }
 
+        if (extract.Action)
+            value = relativeElem[extract.Action]();
+
         return value;
     },
 
