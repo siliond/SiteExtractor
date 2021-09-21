@@ -49,6 +49,9 @@ const SiteExtractor = {
         if (extract.Path)
             relativeElem = $(extract.Path);
 
+        if (Array.isArray(relativeElem))
+            relativeElem = relativeElem[0];
+
         if (extract.Value) {
             value = extract.Value;
         }
@@ -139,7 +142,7 @@ const SiteExtractor = {
                 else
                     elementsText =
                     `//${window.location.hostname + "_" + currentDate.toISOString().split('T')[0]}
-"${elements.map(e => e[elementProps[0]]).join('", "')}",
+"${elements.join('", "')}",
 
 ${csvContents}`;
 
