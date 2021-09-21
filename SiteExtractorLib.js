@@ -49,8 +49,8 @@ const SiteExtractor = {
         if (extract.Path)
             relativeElem = $(extract.Path);
 
-        if (Array.isArray(relativeElem) || relativeElem.length)
-            relativeElem = relativeElem[0];
+        if (relativeElem.length)
+            relativeElem = relativeElem.first();
 
         if (extract.Value) {
             value = extract.Value;
