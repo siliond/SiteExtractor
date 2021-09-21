@@ -7,6 +7,6 @@ SiteExtractor.siteSettings['public.txdpsscheduler.com'] = {
 
         //Log On
         //First Name
-        { Path: 'label.v-label:contains("First Name")', Siblings: 'input', Action: 'val', Value: "Daniel" }
+        { Path: 'label.v-label:contains("First Name")', Siblings: 'input', Action: 'val', ActionParam: "Daniel" }
     ]
 }
