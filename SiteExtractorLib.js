@@ -99,12 +99,13 @@ const SiteExtractor = {
                 value = value + extract.ValueAfter;
         }
 
-        let actionParam;
-        if (extract.ActionParam)
-            actionParam = extract.ActionParam;
+
 
         if (extract.Action)
-            value = relativeElem[extract.Action](actionParam);
+            if (extract.ActionParam)
+                value = relativeElem[extract.Action](actionParam);
+            else
+                value = relativeElem[extract.Action]();
 
         return value;
     },
