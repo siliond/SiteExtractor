@@ -101,7 +101,7 @@ const SiteExtractor = {
 
         if (extract.Action)
             if (extract.ActionParam)
-                value = relativeElem[extract.Action](actionParam);
+                value = relativeElem[extract.Action](extract.ActionParam);
             else
                 value = relativeElem[extract.Action]();
 
