@@ -100,7 +100,7 @@ const SiteExtractor = {
         }
 
         if (extract.Action)
-            value = relativeElem[extract.Action]();
+            value = relativeElem[extract.Action](value);
 
         return value;
     },
