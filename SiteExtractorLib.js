@@ -109,12 +109,13 @@ const SiteExtractor = {
                 if (extract.Action == 'click') {
                     SiteExtractor.stopExtractLoop = true;
 
-                    value = relativeElem[extract.Action](SiteExtractor.getElementDetails);
-                } else
-                    value = relativeElem[extract.Action]();
+                    setTimeout(SiteExtractor.getElementDetails.bind(SiteExtractor), 1000);
+                }
 
-                return value;
+                value = relativeElem[extract.Action]();
             }
+
+        return value;
     },
 
     extract: function() {
