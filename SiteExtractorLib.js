@@ -122,10 +122,8 @@ const SiteExtractor = {
         return value;
     },
 
-    extract: function(extractParams) {
+    extract: function() {
         SiteExtractor.resetExtractIndex();
-
-        SiteExtractor.initExtractParams(extractParams);
 
         return this.getElements();
     },
