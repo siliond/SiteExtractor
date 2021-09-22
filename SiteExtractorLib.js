@@ -136,6 +136,9 @@ const SiteExtractor = {
 
     initExtractParams: function(extractParams) {
         if (extractParams) {
+            if (!this.siteSettings[window.location.hostname])
+                this.siteSettings[window.location.hostname] = {};
+
             if (extractParams.DataSet)
                 this.siteSettings[window.location.hostname].DataSet = extractParams.DataSet;
 
