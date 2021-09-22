@@ -2,12 +2,11 @@
 const site = 'public.txdpsscheduler.com';
 
 function getField(labelText) {
-    return { Path: 'label.v-label:contains("' + labelText + '")', Siblings: 'input', Action: 'val', ActionParam: SiteExtractor.getDataSetValue(capitalizeFirstLetters(labelText)) };
+    return { Path: 'label.v-label:contains("' + labelText + '")', Siblings: 'input', Action: 'val', ActionParam: SiteExtractor.getDataSetValue(makeProperty(labelText)) };
 }
 
-function capitalizeFirstLetters(string) {
-    string = string.charAt(0).toUpperCase() + string.slice(1);
-    string = string.replace(/\s([a-zA-Z])/g, '\\u$1');
+function makeProperty(string) {
+    string = string.replace(/\s/g, '');
 
     return string;
 }
@@ -17,7 +16,7 @@ SiteExtractor.siteSettings[site] = {
     DataSet: [{
         FirstName: 'Daniel',
         LastName: 'Silion',
-        DateOfBirth: '02/14/1978'
+        DateofBirth: '02/14/1978'
     }]
 };
 
