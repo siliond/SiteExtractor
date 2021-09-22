@@ -154,6 +154,9 @@ const SiteExtractor = {
         for (let i = SiteExtractor.extractIndex; !SiteExtractor.stopExtractLoop && i < jPaths.length; i++) {
             let extract = jPaths[i];
 
+            if (typeof extract === 'string' || extract instanceof String)
+                extract = eval(extract);
+
             element.push(SiteExtractor.jPathDrill(i, extract));
 
             SiteExtractor.extractIndex = i + 1;

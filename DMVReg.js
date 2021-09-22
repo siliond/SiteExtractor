@@ -1,11 +1,11 @@
 //https://public.txdpsscheduler.com/
 const site = 'public.txdpsscheduler.com';
 
-function getField(labelText) {
-    return { Path: 'label.v-label:contains("' + labelText + '")', Siblings: 'input', Action: 'val', ActionParam: SiteExtractor.getDataSetValue(makeProperty(labelText)) };
+SiteExtractor.getField = function(labelText) {
+    return { Path: 'label.v-label:contains("' + labelText + '")', Siblings: 'input', Action: 'val', ActionParam: SiteExtractor.getDataSetValue(SiteExtractor.makeProperty(labelText)) };
 }
 
-function makeProperty(string) {
+SiteExtractor.makeProperty = function(string) {
     string = string.replace(/\s/g, '');
 
     return string;
@@ -18,11 +18,11 @@ SiteExtractor.siteSettings[site] = {
         { Path: 'span.v-btn__content:contains("English")', Action: 'click' },
 
         //Log On
-        getField('First Name'),
+        'SiteExtractor.getField("First Name")',
 
-        getField('Last Name'),
+        'SiteExtractor.getField("Last Name")',
 
-        getField('Date of Birth')
+        'SiteExtractor.getField("Date of Birth")'
         //{ Path: 'label.v-label:contains("First Name")', Siblings: 'input', Action: 'val', ActionParam: "Daniel" }
     ]
 };
