@@ -12,15 +12,6 @@ function makeProperty(string) {
 }
 
 SiteExtractor.siteSettings[site] = {
-    DataSetIndex: 0,
-    DataSet: [{
-        FirstName: 'Daniel',
-        LastName: 'Silion',
-        DateofBirth: '02/14/1978'
-    }]
-};
-
-SiteExtractor.siteSettings[site] = {
     "Paths": [
         //Intro
         //Language
