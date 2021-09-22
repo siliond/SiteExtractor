@@ -8,6 +8,10 @@ const SiteExtractor = {
         }
     },
 
+    getDataSetValue: function(fieldName) {
+        return SiteExtractor.siteSettings[window.location.hostname].DataSet[SiteExtractor.siteSettings[window.location.hostname].DataSetIndex][fieldName];
+    },
+
     copyToClipboard: function(text) {
         navigator.clipboard.writeText(text).then(function() {
             SiteExtractor.pageLog('Async: Copying to clipboard was successful!', 'green');
