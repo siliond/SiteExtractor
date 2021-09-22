@@ -122,14 +122,26 @@ const SiteExtractor = {
         return value;
     },
 
-    extract: function() {
+    extract: function(extractParams) {
         SiteExtractor.resetExtractIndex();
+
+        SiteExtractor.initExtractParams(extractParams);
 
         return this.getElements();
     },
 
     resetExtractIndex: function() {
         SiteExtractor.extractIndex = 0;
+    },
+
+    initExtractParams: function(extractParams) {
+        if (extractParams) {
+            if (extractParams.DataSet)
+                this.siteSettings[window.location.hostname].DataSet = extractParams.DataSet;
+
+            if (extractParams.DataSetIndex)
+                this.siteSettings[window.location.hostname].DataSetIndex = extractParams.DataSetIndex;
+        }
     },
 
     getElementDetails() {
