@@ -1,4 +1,30 @@
 //https://public.txdpsscheduler.com/
+
+// SiteExtractor.initExtractParams({
+//     DataSetIndex: 0,
+//     DataSet: [{
+//         FirstName: 'Daniel',
+//         LastName: 'Silion',
+//         DateofBirth: ''
+//     }]
+// });
+
+// window.onload = function() {
+// setTimeout(SiteExtractor.extract.bind(SiteExtractor), 1000);
+// }
+
+// $(document).ready(function() {
+//     $(':input').live('focus', function() {
+//         $(this).attr('autocomplete', 'off');
+//     });
+// });
+
+// $(document).ready(function() {
+//     $('input').each(function() {
+//         $(this).attr('autocomplete', 'on');
+//     });
+// });
+
 const site = 'public.txdpsscheduler.com';
 
 SiteExtractor.getField = function(labelText) {
